@@ -24,13 +24,13 @@ const TRANSLATIONS = {
     ru: {
         gameTitle: "Echo Sonar",
         level: "СЕКТОР",
-        sonar: "СОНАР [Ad] 👁️",
+        sonar: "СОНАР",
         sonarActive: "СОНАР:",
         sec: "с",
-        decoyAd: "МИНЫ [Ad] 💣",
-        decoyReady: "МИНА (x{n}) 💥",
-        shieldAd: "ЩИТ [Ad] 🛡️",
-        shieldActive: "ЩИТ: {n}",
+        decoyAd: "ПРИМАНКА",
+        decoyReady: "ПРИМАНКА ({n})",
+        shieldAd: "ЩИТ",
+        shieldActive: "ЩИТ ({n})",
         echo: "ЭХО",
         battery: "ЭНЕРГИЯ",
         energyLow: "НЕТ ЭНЕРГИИ!",
@@ -40,14 +40,14 @@ const TRANSLATIONS = {
         mineHit: "ВЗРЫВ МИНЫ!",
         jellyShock: "ЭЛЕКТРИЧЕСКИЙ УДАР!",
         shadowAbsorbed: "Зонд уничтожен в глубинах бездны...",
-        respawnShield: "ВОЗРОДИТЬСЯ С ЩИТОМ [Ad] 🛡️",
-        restart: "ЗАНОВО 🔄",
+        respawnShield: "ВОЗРОДИТЬСЯ С ЩИТОМ",
+        restart: "ЗАНОВО ➔",
         victory: "СЕКТОР ЗАЧИЩЕН!",
         victorySub: "Эхолокация помогла пробить путь через бездну.",
         nextLevel: "СЛЕДУЮЩИЙ СЕКТОР ➔",
-        doubleReward: "УДВОИТЬ НАГРАДУ x2 [Ad] 💎💎",
+        doubleReward: "УДВОИТЬ НАГРАДУ x2",
         upgradeMenuTitle: "МОДЕРНИЗАЦИЯ ЗОНДА",
-        openUpgrades: "УЛУЧШЕНИЯ ⚙️",
+        openUpgrades: "УЛУЧШЕНИЯ",
         closeUpgrades: "В БОЙ ➔",
         upgRange: "Дальность Эхо",
         upgSpeed: "Тяга Двигателя",
@@ -65,7 +65,7 @@ const TRANSLATIONS = {
         // Handcrafted Sectors 1-24
         s1Title: "Первый Импульс", s1Hint: "Пробел или кнопка ЭХО — пуск волны. Энергия тратится на каждый пинг!",
         s2Title: "Акустический Сенсор", s2Hint: "Слухачи обходят стены на звук! Не пингуйте рядом со стеной укрытия",
-        s3Title: "Двойной Дозор", s3Hint: "Используйте мины-ловушки [Ad], чтобы увести патрули в сторону",
+        s3Title: "Двойной Дозор", s3Hint: "Используйте мины-ловушки, чтобы увести патрули в сторону",
         s4Title: "Риф Медуз", s4Hint: "Глубоководные медузы бьют током! Огибайте их или оглушайте EMP",
         s5Title: "Гидро-Турбина", s5Hint: "Водные потоки сносят зонд. Прокачайте двигатель для сопротивления!",
         s6Title: "Склад Мин", s6Hint: "Минеры сбрасывают плавучие мины. Подсвечивайте их эхолокатором!",
@@ -91,13 +91,13 @@ const TRANSLATIONS = {
     en: {
         gameTitle: "Echo Sonar",
         level: "SECTOR",
-        sonar: "SONAR [Ad] 👁️",
+        sonar: "SONAR",
         sonarActive: "SONAR:",
         sec: "s",
-        decoyAd: "MINES [Ad] 💣",
-        decoyReady: "MINE (x{n}) 💥",
-        shieldAd: "SHIELD [Ad] 🛡️",
-        shieldActive: "SHIELD: {n}",
+        decoyAd: "DECOY",
+        decoyReady: "DECOY ({n})",
+        shieldAd: "SHIELD",
+        shieldActive: "SHIELD ({n})",
         echo: "ECHO",
         battery: "ENERGY",
         energyLow: "NO ENERGY!",
@@ -107,14 +107,14 @@ const TRANSLATIONS = {
         mineHit: "MINE DETONATION!",
         jellyShock: "ELECTRO-SHOCK!",
         shadowAbsorbed: "Probe was destroyed in the deep abyss...",
-        respawnShield: "RESPAWN WITH SHIELD [Ad] 🛡️",
-        restart: "RESTART 🔄",
+        respawnShield: "RESPAWN WITH SHIELD",
+        restart: "RESTART ➔",
         victory: "SECTOR CLEARED!",
         victorySub: "Echolocation guided your probe through the abyss.",
         nextLevel: "NEXT SECTOR ➔",
-        doubleReward: "DOUBLE REWARD x2 [Ad] 💎💎",
+        doubleReward: "DOUBLE REWARD x2",
         upgradeMenuTitle: "PROBE UPGRADES",
-        openUpgrades: "UPGRADES ⚙️",
+        openUpgrades: "UPGRADES",
         closeUpgrades: "LAUNCH ➔",
         upgRange: "Echo Range",
         upgSpeed: "Thruster Speed",
@@ -131,7 +131,7 @@ const TRANSLATIONS = {
         starObj3: "Zero drone alerts",
         s1Title: "First Impulse", s1Hint: "Space or ECHO button launches wave. Each ping consumes energy!",
         s2Title: "Acoustic Sensor", s2Hint: "Drones navigate around walls to sound! Don't ping near walls",
-        s3Title: "Dual Patrol", s3Hint: "Use decoy mines [Ad] to lure patrols away from chokepoints",
+        s3Title: "Dual Patrol", s3Hint: "Use decoy mines to lure patrols away from chokepoints",
         s4Title: "Jellyfish Reef", s4Hint: "Bioluminescent jellyfish shock on contact! Bypass or EMP-stun them",
         s5Title: "Hydro Turbine", s5Hint: "Water currents push probe. Upgrade thrusters for resistance!",
         s6Title: "Mine Depot", s6Hint: "Miners drop proximity mines. Illuminate them with sonar!",
@@ -2518,47 +2518,79 @@ class GameEngine {
         this.offsetX = (this.canvas.width - vWidth * this.scale) / 2;
         this.offsetY = (this.canvas.height - vHeight * this.scale) / 2;
 
+        const W = this.canvas.width;
+        const H = this.canvas.height;
+
+        // Echo floating ping button at bottom right
         this.echoButtonBounds = {
-            x: this.canvas.width - 70 * dpr,
-            y: this.canvas.height - 70 * dpr,
-            radius: 36 * dpr
+            x: W - 58 * dpr,
+            y: H - 58 * dpr,
+            radius: 34 * dpr
         };
 
-        const btnW = Math.min(115 * dpr, (this.canvas.width * 0.22));
-        this.sonarButtonBounds = {
-            x: this.canvas.width - btnW - 12 * dpr,
-            y: 16 * dpr,
-            w: btnW,
-            h: 34 * dpr
-        };
-
-        this.decoyButtonBounds = {
-            x: this.canvas.width - btnW * 2 - 20 * dpr,
-            y: 16 * dpr,
-            w: btnW,
-            h: 34 * dpr
-        };
-
-        this.shieldButtonBounds = {
-            x: this.canvas.width - btnW * 3 - 28 * dpr,
-            y: 16 * dpr,
-            w: btnW,
-            h: 34 * dpr
+        // Header controls (top right)
+        this.muteButtonBounds = {
+            x: W - 38 * dpr,
+            y: 7 * dpr,
+            w: 30 * dpr,
+            h: 30 * dpr
         };
 
         this.upgradeMenuButtonBounds = {
-            x: 16 * dpr,
-            y: 95 * dpr,
-            w: 125 * dpr,
+            x: W - 74 * dpr,
+            y: 7 * dpr,
+            w: 32 * dpr,
             h: 30 * dpr
         };
 
-        this.muteButtonBounds = {
-            x: 148 * dpr,
-            y: 95 * dpr,
-            w: 36 * dpr,
-            h: 30 * dpr
-        };
+        // Ability buttons layout (responsive)
+        if (W >= 660 * dpr) {
+            // Wide screens: Place on top bar
+            const btnH = 30 * dpr;
+            this.sonarButtonBounds = {
+                x: W - 170 * dpr,
+                y: 7 * dpr,
+                w: 88 * dpr,
+                h: btnH
+            };
+            this.decoyButtonBounds = {
+                x: W - 276 * dpr,
+                y: 7 * dpr,
+                w: 100 * dpr,
+                h: btnH
+            };
+            this.shieldButtonBounds = {
+                x: W - 364 * dpr,
+                y: 7 * dpr,
+                w: 82 * dpr,
+                h: btnH
+            };
+        } else {
+            // Narrow screens / iframes / mobile: Dock at bottom left, safely separated from echo button!
+            const actY = H - 46 * dpr;
+            const actH = 34 * dpr;
+            const availableW = Math.max(200 * dpr, W - 110 * dpr);
+            const btnW = Math.min(96 * dpr, Math.floor((availableW - 16 * dpr) / 3));
+
+            this.shieldButtonBounds = {
+                x: 12 * dpr,
+                y: actY,
+                w: btnW,
+                h: actH
+            };
+            this.decoyButtonBounds = {
+                x: 12 * dpr + btnW + 6 * dpr,
+                y: actY,
+                w: btnW,
+                h: actH
+            };
+            this.sonarButtonBounds = {
+                x: 12 * dpr + (btnW + 6 * dpr) * 2,
+                y: actY,
+                w: btnW,
+                h: actH
+            };
+        }
     }
 
     loadLevel(index) {
@@ -2619,26 +2651,23 @@ class GameEngine {
 
         if (this.decoyCharges > 0) {
             this.decoyCharges--;
-            const mine = new DecoyMine(this.player.x, this.player.y);
-            this.decoys.push(mine);
-            playDecoyChime();
         } else {
-            showRewarded(() => {
-                this.decoyCharges = 1;
-                const mine = new DecoyMine(this.player.x, this.player.y);
-                this.decoys.push(mine);
-                playDecoyChime();
-            });
+            this.decoyCharges = 2;
         }
+        const mine = new DecoyMine(this.player.x, this.player.y);
+        this.decoys.push(mine);
+        playDecoyChime();
+    }
+
+    activateShield() {
+        if (!this.player || this.gameState !== 'PLAYING') return;
+        initAudio();
+        this.player.shields = Math.min(3, (this.player.shields || 0) + 1);
+        playShieldHitSound();
     }
 
     activateShieldAd() {
-        if (!this.player || this.gameState !== 'PLAYING') return;
-        initAudio();
-        showRewarded(() => {
-            this.player.shields = Math.min(3, this.player.shields + 2);
-            playShieldHitSound();
-        });
+        this.activateShield();
     }
 
     bindEvents() {
@@ -2734,10 +2763,9 @@ class GameEngine {
         if (this.gameState === 'PLAYING') {
             if (mx >= this.sonarButtonBounds.x && mx <= this.sonarButtonBounds.x + this.sonarButtonBounds.w &&
                 my >= this.sonarButtonBounds.y && my <= this.sonarButtonBounds.y + this.sonarButtonBounds.h) {
-                showRewarded(() => {
-                    this.sonarTimer = 10.0;
-                    playPingSound(950, 0.4);
-                });
+                initAudio();
+                this.sonarTimer = 10.0;
+                playPingSound(950, 0.4);
                 return true;
             }
 
@@ -2749,7 +2777,7 @@ class GameEngine {
 
             if (mx >= this.shieldButtonBounds.x && mx <= this.shieldButtonBounds.x + this.shieldButtonBounds.w &&
                 my >= this.shieldButtonBounds.y && my <= this.shieldButtonBounds.y + this.shieldButtonBounds.h) {
-                this.activateShieldAd();
+                this.activateShield();
                 return true;
             }
 
@@ -2779,7 +2807,7 @@ class GameEngine {
 
             if (mx >= this.closeUpgradesButtonBounds.x && mx <= this.closeUpgradesButtonBounds.x + this.closeUpgradesButtonBounds.w &&
                 my >= this.closeUpgradesButtonBounds.y && my <= this.closeUpgradesButtonBounds.y + this.closeUpgradesButtonBounds.h) {
-                this.loadLevel(this.currentLevelIndex);
+                this.gameState = 'PLAYING';
                 return true;
             }
         }
@@ -2788,28 +2816,20 @@ class GameEngine {
             if (!this.rewardedRespawnUsedThisLevel &&
                 mx >= this.respawnButtonBounds.x && mx <= this.respawnButtonBounds.x + this.respawnButtonBounds.w &&
                 my >= this.respawnButtonBounds.y && my <= this.respawnButtonBounds.y + this.respawnButtonBounds.h) {
-
-                showRewarded(() => {
-                    this.rewardedRespawnUsedThisLevel = true;
-                    this.player.shields = 2;
-                    this.player.battery = this.player.maxBattery;
-                    this.player.reset();
-                    this.enemies.forEach(e => e.reset());
-                    this.gameState = 'PLAYING';
-                });
+                this.rewardedRespawnUsedThisLevel = true;
+                this.player.shields = 2;
+                this.player.battery = this.player.maxBattery;
+                this.player.dead = false;
+                this.player.reset();
+                this.enemies.forEach(e => e.reset());
+                this.gameState = 'PLAYING';
+                playWinSound();
                 return true;
             }
 
             if (mx >= this.restartButtonBounds.x && mx <= this.restartButtonBounds.x + this.restartButtonBounds.w &&
                 my >= this.restartButtonBounds.y && my <= this.restartButtonBounds.y + this.restartButtonBounds.h) {
-
-                deathCount++;
-                const restartGame = () => {
-                    this.loadLevel(this.currentLevelIndex);
-                };
-
-                if (deathCount % 3 === 0) showInterstitial(restartGame);
-                else restartGame();
+                this.loadLevel(this.currentLevelIndex);
                 return true;
             }
         }
@@ -2817,24 +2837,18 @@ class GameEngine {
         if (this.gameState === 'VICTORY') {
             if (!this.hasDoubledReward && mx >= this.doubleRewardButtonBounds.x && mx <= this.doubleRewardButtonBounds.x + this.doubleRewardButtonBounds.w &&
                 my >= this.doubleRewardButtonBounds.y && my <= this.doubleRewardButtonBounds.y + this.doubleRewardButtonBounds.h) {
-
-                showRewarded(() => {
-                    this.hasDoubledReward = true;
-                    const bonus = Math.max(2, this.sectorCoinsEarned);
-                    this.crystalsBank += bonus;
-                    this.saveGameData();
-                    playCrystalSound();
-                });
+                this.hasDoubledReward = true;
+                const bonus = Math.max(2, this.sectorCoinsEarned);
+                this.crystalsBank += bonus;
+                this.saveGameData();
+                playCrystalSound();
                 return true;
             }
 
             if (mx >= this.nextLevelButtonBounds.x && mx <= this.nextLevelButtonBounds.x + this.nextLevelButtonBounds.w &&
                 my >= this.nextLevelButtonBounds.y && my <= this.nextLevelButtonBounds.y + this.nextLevelButtonBounds.h) {
-
-                showInterstitial(() => {
-                    this.hasDoubledReward = false;
-                    this.loadLevel(this.currentLevelIndex + 1);
-                });
+                this.hasDoubledReward = false;
+                this.loadLevel(this.currentLevelIndex + 1);
                 return true;
             }
         }
@@ -3147,113 +3161,148 @@ class GameEngine {
         ctx.save();
 
         if (this.gameState === 'PLAYING') {
-            ctx.fillStyle = '#ffffff';
-            ctx.font = `bold ${Math.round(16 * dpr)}px "Orbitron", sans-serif`;
-            ctx.textAlign = 'left';
-            ctx.fillText(`${t('level')} ${this.level.id}: ${t(this.level.titleKey)}`, 16 * dpr, 32 * dpr);
+            const W = this.canvas.width;
+            const barH = 44 * dpr;
 
-            if (this.level.hintKey) {
-                ctx.fillStyle = 'rgba(0, 243, 255, 0.8)';
-                ctx.font = `600 ${Math.round(11.5 * dpr)}px "Montserrat", sans-serif`;
-                ctx.fillText(t(this.level.hintKey), 16 * dpr, 52 * dpr);
-            }
-
-            // Battery Meter
-            const batW = 120 * dpr;
-            const batH = 9 * dpr;
-            const batX = 16 * dpr;
-            const batY = 62 * dpr;
-            const batPct = Math.max(0, this.player.battery / this.player.maxBattery);
-
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-            ctx.fillRect(batX, batY, batW, batH);
-            ctx.fillStyle = batPct > 0.25 ? '#00f3ff' : '#ef4444';
-            ctx.fillRect(batX, batY, batW * batPct, batH);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-            ctx.lineWidth = 1 * dpr;
-            ctx.strokeRect(batX, batY, batW, batH);
-
-            ctx.fillStyle = '#fbbf24';
-            ctx.font = `bold ${Math.round(12 * dpr)}px "Orbitron", sans-serif`;
-            const crystalsHudText = this.sectorCoinsEarned > 0
-                ? `💎 ${this.crystalsBank} (+${this.sectorCoinsEarned})   🛡️ ${this.player.shields}`
-                : `💎 ${this.crystalsBank}   🛡️ ${this.player.shields}`;
-            ctx.fillText(crystalsHudText, 16 * dpr, 87 * dpr);
-
-            // Upgrades Menu Button
-            const ub = this.upgradeMenuButtonBounds;
-            ctx.fillStyle = 'rgba(0, 243, 255, 0.15)';
-            ctx.strokeStyle = '#00f3ff';
+            // 1. Sleek Glass Top Status Bar
+            ctx.fillStyle = 'rgba(7, 12, 24, 0.85)';
+            ctx.fillRect(0, 0, W, barH);
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.2)';
             ctx.lineWidth = 1 * dpr;
             ctx.beginPath();
-            ctx.roundRect ? ctx.roundRect(ub.x, ub.y, ub.w, ub.h, 6 * dpr) : ctx.rect(ub.x, ub.y, ub.w, ub.h);
-            ctx.fill();
+            ctx.moveTo(0, barH);
+            ctx.lineTo(W, barH);
             ctx.stroke();
 
+            // 2. Left Side: Sector indicator & Inventory
             ctx.fillStyle = '#00f3ff';
-            ctx.font = `bold ${Math.round(10 * dpr)}px "Orbitron", sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.fillText(t('openUpgrades'), ub.x + ub.w / 2, ub.y + ub.h / 2 + 3.5 * dpr);
+            ctx.font = `bold ${Math.round(13 * dpr)}px "Orbitron", sans-serif`;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`${t('level')} ${this.level.id}`, 16 * dpr, barH / 2);
 
-            // Sound Mute Toggle Button (🔊/🔇)
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = `bold ${Math.round(11 * dpr)}px "Orbitron", sans-serif`;
+            const statsText = `💎 ${this.crystalsBank}` + (this.sectorCoinsEarned > 0 ? ` (+${this.sectorCoinsEarned})` : '') + `   🛡️ ${this.player.shields || 0}`;
+            ctx.fillText(statsText, 105 * dpr, barH / 2);
+
+            // 3. Center: Battery & Energy Gauge
+            if (W >= 560 * dpr) {
+                const batW = Math.min(130 * dpr, W * 0.18);
+                const batH = 8 * dpr;
+                const batX = (W - batW) / 2;
+                const batY = (barH - batH) / 2;
+                const batPct = Math.max(0, Math.min(1, this.player.battery / this.player.maxBattery));
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+                ctx.fillRect(batX, batY, batW, batH);
+                ctx.fillStyle = batPct > 0.25 ? '#00f3ff' : '#ef4444';
+                ctx.fillRect(batX, batY, batW * batPct, batH);
+                ctx.strokeStyle = 'rgba(0, 243, 255, 0.35)';
+                ctx.strokeRect(batX, batY, batW, batH);
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                ctx.font = `600 ${Math.round(8.5 * dpr)}px "Orbitron", sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.fillText(`${Math.round(batPct * 100)}%`, W / 2, batY - 5 * dpr);
+            }
+
+            // 4. Header buttons: Mute and Upgrades
             const mb = this.muteButtonBounds;
-            ctx.fillStyle = musicEngine.isMuted ? 'rgba(239, 68, 68, 0.2)' : 'rgba(0, 243, 255, 0.15)';
-            ctx.strokeStyle = musicEngine.isMuted ? '#ef4444' : '#00f3ff';
-            ctx.lineWidth = 1 * dpr;
+            ctx.fillStyle = musicEngine.isMuted ? 'rgba(239, 68, 68, 0.25)' : 'rgba(0, 243, 255, 0.12)';
+            ctx.strokeStyle = musicEngine.isMuted ? '#ef4444' : 'rgba(0, 243, 255, 0.5)';
             ctx.beginPath();
             ctx.roundRect ? ctx.roundRect(mb.x, mb.y, mb.w, mb.h, 6 * dpr) : ctx.rect(mb.x, mb.y, mb.w, mb.h);
             ctx.fill();
             ctx.stroke();
-
             ctx.font = `${Math.round(13 * dpr)}px sans-serif`;
             ctx.textAlign = 'center';
-            ctx.fillText(musicEngine.isMuted ? '🔇' : '🔊', mb.x + mb.w / 2, mb.y + mb.h / 2 + 4.5 * dpr);
+            ctx.textBaseline = 'middle';
+            ctx.fillText(musicEngine.isMuted ? '🔇' : '🔊', mb.x + mb.w / 2, mb.y + mb.h / 2);
 
-            // 1. Sonar Ad Button
-            const sb = this.sonarButtonBounds;
-            ctx.fillStyle = this.sonarTimer > 0 ? 'rgba(0, 243, 255, 0.4)' : 'rgba(0, 243, 255, 0.15)';
-            ctx.strokeStyle = '#00f3ff';
-            ctx.lineWidth = 1.5 * dpr;
+            const ub = this.upgradeMenuButtonBounds;
+            ctx.fillStyle = 'rgba(0, 243, 255, 0.12)';
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.5)';
             ctx.beginPath();
-            ctx.roundRect ? ctx.roundRect(sb.x, sb.y, sb.w, sb.h, 8 * dpr) : ctx.rect(sb.x, sb.y, sb.w, sb.h);
+            ctx.roundRect ? ctx.roundRect(ub.x, ub.y, ub.w, ub.h, 6 * dpr) : ctx.rect(ub.x, ub.y, ub.w, ub.h);
             ctx.fill();
             ctx.stroke();
+            ctx.font = `${Math.round(12 * dpr)}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('⚙️', ub.x + ub.w / 2, ub.y + ub.h / 2);
 
+            // 5. Tactical Ability Buttons (Sonar, Decoy, Shield)
+            const sb = this.sonarButtonBounds;
+            ctx.fillStyle = this.sonarTimer > 0 ? 'rgba(0, 243, 255, 0.35)' : 'rgba(0, 243, 255, 0.12)';
+            ctx.strokeStyle = this.sonarTimer > 0 ? '#00f3ff' : 'rgba(0, 243, 255, 0.4)';
+            ctx.lineWidth = 1 * dpr;
+            ctx.beginPath();
+            ctx.roundRect ? ctx.roundRect(sb.x, sb.y, sb.w, sb.h, 6 * dpr) : ctx.rect(sb.x, sb.y, sb.w, sb.h);
+            ctx.fill();
+            ctx.stroke();
             ctx.fillStyle = '#00f3ff';
-            ctx.font = `bold ${Math.round(10.5 * dpr)}px "Orbitron", sans-serif`;
-            const sonarText = this.sonarTimer > 0 ? `${t('sonarActive')} ${Math.ceil(this.sonarTimer)}${t('sec')}` : t('sonar');
-            ctx.fillText(sonarText, sb.x + sb.w / 2, sb.y + sb.h / 2 + 4 * dpr);
+            ctx.font = `bold ${Math.round(10 * dpr)}px "Orbitron", sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            const sonarText = this.sonarTimer > 0 ? `${t('sonarActive')} ${Math.ceil(this.sonarTimer)}s` : t('sonar');
+            ctx.fillText(sonarText, sb.x + sb.w / 2, sb.y + sb.h / 2);
 
-            // 2. Decoy Mine Button
             const db = this.decoyButtonBounds;
             const hasCharges = this.decoyCharges > 0;
-            ctx.fillStyle = hasCharges ? 'rgba(168, 85, 247, 0.35)' : 'rgba(168, 85, 247, 0.15)';
-            ctx.strokeStyle = '#a855f7';
-            ctx.lineWidth = 1.5 * dpr;
+            ctx.fillStyle = hasCharges ? 'rgba(168, 85, 247, 0.3)' : 'rgba(168, 85, 247, 0.12)';
+            ctx.strokeStyle = hasCharges ? '#a855f7' : 'rgba(168, 85, 247, 0.4)';
             ctx.beginPath();
-            ctx.roundRect ? ctx.roundRect(db.x, db.y, db.w, db.h, 8 * dpr) : ctx.rect(db.x, db.y, db.w, db.h);
+            ctx.roundRect ? ctx.roundRect(db.x, db.y, db.w, db.h, 6 * dpr) : ctx.rect(db.x, db.y, db.w, db.h);
             ctx.fill();
             ctx.stroke();
-
             ctx.fillStyle = '#c084fc';
+            ctx.font = `bold ${Math.round(10 * dpr)}px "Orbitron", sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
             const decoyText = hasCharges ? t('decoyReady', { n: this.decoyCharges }) : t('decoyAd');
-            ctx.fillText(decoyText, db.x + db.w / 2, db.y + db.h / 2 + 4 * dpr);
+            ctx.fillText(decoyText, db.x + db.w / 2, db.y + db.h / 2);
 
-            // 3. Shield Ad Button
             const shb = this.shieldButtonBounds;
-            ctx.fillStyle = this.player.shields > 0 ? 'rgba(56, 189, 248, 0.35)' : 'rgba(56, 189, 248, 0.15)';
-            ctx.strokeStyle = '#38bdf8';
-            ctx.lineWidth = 1.5 * dpr;
+            const hasShield = (this.player.shields || 0) > 0;
+            ctx.fillStyle = hasShield ? 'rgba(56, 189, 248, 0.3)' : 'rgba(56, 189, 248, 0.12)';
+            ctx.strokeStyle = hasShield ? '#38bdf8' : 'rgba(56, 189, 248, 0.4)';
             ctx.beginPath();
-            ctx.roundRect ? ctx.roundRect(shb.x, shb.y, shb.w, shb.h, 8 * dpr) : ctx.rect(shb.x, shb.y, shb.w, shb.h);
+            ctx.roundRect ? ctx.roundRect(shb.x, shb.y, shb.w, shb.h, 6 * dpr) : ctx.rect(shb.x, shb.y, shb.w, shb.h);
             ctx.fill();
             ctx.stroke();
-
             ctx.fillStyle = '#38bdf8';
-            const shieldText = this.player.shields > 0 ? t('shieldActive', { n: this.player.shields }) : t('shieldAd');
-            ctx.fillText(shieldText, shb.x + shb.w / 2, shb.y + shb.h / 2 + 4 * dpr);
+            ctx.font = `bold ${Math.round(10 * dpr)}px "Orbitron", sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            const shieldText = hasShield ? t('shieldActive', { n: this.player.shields }) : t('shieldAd');
+            ctx.fillText(shieldText, shb.x + shb.w / 2, shb.y + shb.h / 2);
 
-            // Touch Joystick
+            // 6. Mission Transmission / Level Hint (Clean Holographic Pill)
+            if (this.level.hintKey) {
+                const hintText = t(this.level.hintKey);
+                ctx.font = `500 ${Math.round(11 * dpr)}px "Montserrat", sans-serif`;
+                const textMetrics = ctx.measureText(hintText);
+                const pillW = Math.min(W - 32 * dpr, textMetrics.width + 24 * dpr);
+                const pillH = 26 * dpr;
+                const pillX = 16 * dpr;
+                const pillY = barH + 10 * dpr;
+
+                ctx.fillStyle = 'rgba(7, 12, 24, 0.75)';
+                ctx.strokeStyle = 'rgba(0, 243, 255, 0.25)';
+                ctx.lineWidth = 1 * dpr;
+                ctx.beginPath();
+                ctx.roundRect ? ctx.roundRect(pillX, pillY, pillW, pillH, 6 * dpr) : ctx.rect(pillX, pillY, pillW, pillH);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = 'rgba(0, 243, 255, 0.9)';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(hintText, pillX + 10 * dpr, pillY + pillH / 2);
+            }
+
+            // 7. Touch Joystick
             if (this.touchJoystick.active) {
                 const tj = this.touchJoystick;
                 ctx.beginPath();
@@ -3270,12 +3319,12 @@ class GameEngine {
                 ctx.fill();
             }
 
-            // Mobile ECHO Button
+            // 8. Mobile ECHO Button
             const eb = this.echoButtonBounds;
             const cooldownRatio = this.player ? Math.max(0, this.player.pingCooldown / 0.45) : 0;
             ctx.beginPath();
             ctx.arc(eb.x, eb.y, eb.radius, 0, Math.PI * 2);
-            ctx.fillStyle = cooldownRatio > 0 || this.player.battery < 18 ? 'rgba(0, 243, 255, 0.08)' : 'rgba(0, 243, 255, 0.25)';
+            ctx.fillStyle = cooldownRatio > 0 || this.player.battery < 18 ? 'rgba(0, 243, 255, 0.08)' : 'rgba(0, 243, 255, 0.22)';
             ctx.strokeStyle = '#00f3ff';
             ctx.lineWidth = 2.5 * dpr;
             ctx.shadowColor = '#00f3ff';
@@ -3285,7 +3334,9 @@ class GameEngine {
 
             ctx.fillStyle = '#00f3ff';
             ctx.font = `bold ${Math.round(13 * dpr)}px "Orbitron", sans-serif`;
-            ctx.fillText(t('echo'), eb.x, eb.y + 4.5 * dpr);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(t('echo'), eb.x, eb.y);
         }
 
         if (this.gameState === 'UPGRADES') this.renderUpgradesScreen(ctx, dpr);

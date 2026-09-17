@@ -7,44 +7,61 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-top-right"></div>
+  <div class="ambient-glow glow-mid-left"></div>
+  <div class="ambient-glow glow-bottom-center"></div>
+
+  <header class="header glass-header">
     <div class="container header-container">
-      <div class="logo">
+      <a href="#" class="logo">
         <span class="logo-accent">&lt;/&gt;</span> G1ght25.dev
-      </div>
+      </a>
       <nav class="nav">
         <a href="#about" class="nav-link">Обо мне</a>
-        <a href="#skills" class="nav-link">Стек технологий</a>
-        <a href="#projects" class="nav-link">Проекты</a>
+        <a href="#skills" class="nav-link">Стек</a>
+        <a href="#projects" class="nav-link">Кейсы и проекты</a>
         <a href="#experience" class="nav-link">Опыт</a>
-        <a href="#contacts" class="nav-btn">Связаться</a>
+        <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-tg">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+          </svg>
+          Telegram @g1ghtik
+        </a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- HERO SECTION -->
     <section id="about" class="hero-section">
       <div class="container hero-grid">
-        <div class="hero-content">
+        <div class="hero-content reveal-on-scroll">
           <div class="badge-status">
-            <span class="status-indicator"></span> Доступен для коммерческих проектов и full-time
+            <span class="status-indicator"></span> Доступен для коммерческих заказов
           </div>
           <h1 class="hero-title">
-            Full-Stack разработчик &amp;<br>
-            <span class="gradient-text">Инженер цифровых решений</span>
+            Разработка веб-сервисов &amp;<br>
+            <span class="gradient-text">Telegram-ботов для бизнеса</span>
           </h1>
           <p class="hero-desc">
-            Проектирование и разработка масштабируемых веб-сервисов, сложных интерфейсов на React 19 / TypeScript, высоконагруженных Telegram-ботов на aiogram 3.x и интерактивных Web-систем с продуманной бизнес-логикой и отказоустойчивой архитектурой.
+            Проектирую и создаю надежные цифровые решения под ключ: автономные системы доставки еды и KDS-кухни на React 19 / TypeScript, высоконагруженных ботов на aiogram 3.x и интерактивные веб-интерфейсы. Быстро, отказоустойчиво, с понятным кодом.
           </p>
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">Смотреть проекты</a>
-            <a href="https://github.com/G1ght25" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Профиль</a>
+            <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-tg-hero">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+              <span>Написать в Telegram (@g1ghtik)</span>
+            </a>
+            <a href="#projects" class="btn btn-secondary">Смотреть проекты &darr;</a>
           </div>
         </div>
-        <div class="hero-card">
+
+        <div class="hero-card glass-card reveal-on-scroll">
           <div class="card-header">
             <div class="window-dots">
               <span class="dot red"></span>
@@ -56,105 +73,129 @@
           <div class="card-body">
             <pre class="code-block"><code>{
   "developer": "G1ght25",
+  "telegram": "@g1ghtik",
   "role": "Full-Stack Engineer",
   "primary_stack": [
     "TypeScript / React 19",
-    "Node.js / Express",
     "Python / aiogram 3.x",
-    "FastAPI / SQLite / PostgreSQL"
+    "Node.js / Express / REST",
+    "PostgreSQL / SQLite"
   ],
-  "focus_areas": [
-    "E-commerce & Delivery Suites",
-    "Multi-role RBAC Architectures",
-    "Automated Telegram Workflows",
-    "State Machines (FSM)"
+  "solutions": [
+    "Food Delivery & KDS Suites",
+    "E-commerce & Booking Bots",
+    "RBAC Security Architectures",
+    "HTML5 Canvas Interactive Apps"
   ],
-  "production_ready": true
+  "commercial_ready": true
 }</code></pre>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SKILLS SECTION -->
     <section id="skills" class="section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Стек технологий</h2>
-          <p class="section-subtitle">Проверенные инструменты для создания надежных серверных и клиентских систем</p>
+        <div class="section-header reveal-on-scroll">
+          <h2 class="section-title">Стек технологий и компетенции</h2>
+          <p class="section-subtitle">Проверенные инструменты для создания надежных серверных и клиентских продуктов</p>
         </div>
         <div class="skills-grid">
-          <div class="skill-card">
-            <h3 class="skill-category">Frontend &amp; UI</h3>
+          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
+            <div class="skill-icon-header">
+              <div class="skill-badge-icon cyan-icon">&lt;/&gt;</div>
+              <h3 class="skill-category">Frontend &amp; UI</h3>
+            </div>
             <ul class="skill-list">
               <li><span class="skill-tag">React 19</span></li>
               <li><span class="skill-tag">TypeScript</span></li>
               <li><span class="skill-tag">Tailwind CSS</span></li>
               <li><span class="skill-tag">Vite</span></li>
-              <li><span class="skill-tag">HTML5 Canvas / WebGL</span></li>
-              <li><span class="skill-tag">Responsive / Mobile-First</span></li>
+              <li><span class="skill-tag">HTML5 Canvas / Web Audio</span></li>
+              <li><span class="skill-tag">Mobile-First / Адаптив</span></li>
             </ul>
           </div>
-          <div class="skill-card">
-            <h3 class="skill-category">Backend &amp; Bot API</h3>
+
+          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
+            <div class="skill-icon-header">
+              <div class="skill-badge-icon blue-icon">&#9881;</div>
+              <h3 class="skill-category">Backend &amp; Bot API</h3>
+            </div>
             <ul class="skill-list">
               <li><span class="skill-tag">Python 3.12</span></li>
               <li><span class="skill-tag">aiogram 3.x</span></li>
               <li><span class="skill-tag">Node.js / Express</span></li>
               <li><span class="skill-tag">FastAPI</span></li>
-              <li><span class="skill-tag">RESTful APIs</span></li>
-              <li><span class="skill-tag">Server-Sent Events (SSE)</span></li>
+              <li><span class="skill-tag">RESTful APIs / SSE</span></li>
+              <li><span class="skill-tag">Машина состояний (FSM)</span></li>
             </ul>
           </div>
-          <div class="skill-card">
-            <h3 class="skill-category">Базы данных &amp; Память</h3>
+
+          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
+            <div class="skill-icon-header">
+              <div class="skill-badge-icon amber-icon">&#9907;</div>
+              <h3 class="skill-category">Базы данных &amp; Память</h3>
+            </div>
             <ul class="skill-list">
               <li><span class="skill-tag">PostgreSQL</span></li>
               <li><span class="skill-tag">SQLite / aiosqlite</span></li>
               <li><span class="skill-tag">Redis</span></li>
               <li><span class="skill-tag">Транзакции &amp; Миграции</span></li>
-              <li><span class="skill-tag">Индексация &amp; Оптимизация</span></li>
+              <li><span class="skill-tag">Индексы &amp; Оптимизация</span></li>
+              <li><span class="skill-tag">Защита от утечек (IDOR)</span></li>
             </ul>
           </div>
-          <div class="skill-card">
-            <h3 class="skill-category">Архитектура &amp; DevOps</h3>
+
+          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
+            <div class="skill-icon-header">
+              <div class="skill-badge-icon green-icon">&#10004;</div>
+              <h3 class="skill-category">Архитектура &amp; Запуск</h3>
+            </div>
             <ul class="skill-list">
-              <li><span class="skill-tag">Конечные автоматы (FSM)</span></li>
               <li><span class="skill-tag">RBAC (5 уровней прав)</span></li>
               <li><span class="skill-tag">Docker &amp; Docker Compose</span></li>
               <li><span class="skill-tag">Nginx / Reverse Proxy</span></li>
               <li><span class="skill-tag">Linux / Bash Scripting</span></li>
-              <li><span class="skill-tag">CI/CD &amp; Git</span></li>
+              <li><span class="skill-tag">Git / GitHub Pages / CI</span></li>
+              <li><span class="skill-tag">Безопасность API</span></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- INTERACTIVE SHOWCASE SECTION -->
-    <section id="projects" class="section bg-alt">
+    <!-- SHOWCASE / CASES SECTION -->
+    <section id="projects" class="section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Демонстрационные проекты</h2>
-          <p class="section-subtitle">Интерактивные шоукейсы коммерческих продуктов, ботов и веб-приложений</p>
+        <div class="section-header reveal-on-scroll">
+          <h2 class="section-title">Кейсы и выполненные решения</h2>
+          <p class="section-subtitle">Интерактивные шоукейсы реальных систем с живой демонстрацией прямо в браузере</p>
         </div>
 
         <div class="showcase-list">
 
-          <!-- PROJECT 1: PANDABAR -->
-          <article class="showcase-card">
+          <!-- CASE 1: PANDABAR -->
+          <article class="showcase-card glass-card reveal-on-scroll">
             <div class="showcase-info">
               <div class="project-meta">
-                <span class="project-badge">Enterprise Full-Stack</span>
+                <span class="project-badge badge-case">Кейс: Общепит и доставка</span>
                 <span class="project-year">2026</span>
               </div>
-              <h3 class="project-title">PandaBar - Сервис доставки еды и KDS-система</h3>
+              <h3 class="project-title">PandaBar — Комплекс доставки еды и KDS-система</h3>
               <p class="project-desc">
-                Масштабируемый комплекс для ресторанной сети: клиентская витрина с умной корзиной, интерактивный экран повара кухни (KDS), мобильный терминал курьера и автоматическая печать накладных.
+                Масштабируемый комплекс для ресторанной сети: клиентская веб-витрина с динамической корзиной, интерактивный сенсорный экран повара кухни (KDS) и модуль печати чеков.
               </p>
               <div class="project-features">
-                <div class="feature-item"><strong>RBAC Архитектура:</strong> 5 изолированных ролей (Клиент, Повар, Курьер, Менеджер, Администратор).</div>
-                <div class="feature-item"><strong>FSM Заказов:</strong> защищенные переходы статусов без возможности подделки сумм на клиенте.</div>
-                <div class="feature-item"><strong>Автоматизация кухни:</strong> цветовая индикация времени приготовления и интеграция с термопринтерами чеков.</div>
+                <div class="feature-item">
+                  <strong>Бизнес-результат:</strong> Автономный приём заказов без 35% комиссий агрегаторам, передача чека на кухню за 1 секунду.
+                </div>
+                <div class="feature-item">
+                  <strong>KDS-интерфейс кухни:</strong> Контрастный экран с цветовой шкалой задержек, звуковыми уведомлениями и стоп-листом.
+                </div>
+                <div class="feature-item">
+                  <strong>Умная витрина:</strong> Прогресс бесплатной доставки от 1000 RUB, соусы, мобильная адаптация под смартфоны.
+                </div>
               </div>
               <div class="project-tags">
                 <span class="tag">React 19</span>
@@ -162,19 +203,24 @@
                 <span class="tag">Tailwind CSS</span>
                 <span class="tag">Node.js</span>
                 <span class="tag">Express</span>
-                <span class="tag">SQLite</span>
+                <span class="tag">KDS Экран</span>
                 <span class="tag">RBAC</span>
               </div>
               <div class="project-footer">
-                <a href="./pandabar/" class="btn btn-primary">Исходный код проекта &rarr;</a>
+                <a href="https://t.me/g1ghtik?text=Здравствуйте!%20Хочу%20обсудить%20проект%20типа%20PandaBar" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-tg-sm">
+                  Заказать похожий проект
+                </a>
+                <a href="https://github.com/G1ght25/developer-portfolio/tree/main/pandabar" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                  Код на GitHub &rarr;
+                </a>
               </div>
             </div>
 
             <div class="showcase-visual">
-              <div class="device-switcher">
+              <div class="device-switcher glass-switcher">
                 <button class="switch-btn active" data-tab="showcase">Витрина</button>
                 <button class="switch-btn" data-tab="kds">KDS Кухня</button>
-                <button class="switch-btn" data-tab="receipt">Чек 1С / KDS</button>
+                <button class="switch-btn" data-tab="receipt">Чек накладной</button>
                 <button class="switch-btn" data-tab="courier">Курьер</button>
               </div>
 
@@ -288,21 +334,27 @@
             </div>
           </article>
 
-          <!-- PROJECT 2: TELEGRAM BOT -->
-          <article class="showcase-card">
+          <!-- CASE 2: TELEGRAM BOT -->
+          <article class="showcase-card glass-card reveal-on-scroll">
             <div class="showcase-info">
               <div class="project-meta">
-                <span class="project-badge">Automated Bot Platform</span>
+                <span class="project-badge badge-case">Кейс: Автоматизация бизнеса</span>
                 <span class="project-year">2026</span>
               </div>
-              <h3 class="project-title">Telegram Portfolio &amp; Business Suite</h3>
+              <h3 class="project-title">Telegram Business Suite — Бот для лидов и продаж 24/7</h3>
               <p class="project-desc">
-                Высоконагруженный асинхронный Telegram-бот на aiogram 3.x с 4 готовыми коммерческими направлениями: онлайн-магазин, бронирование слотов, интерактивный калькулятор сметы и панель администратора.
+                Асинхронный робот на aiogram 3.x с 4 готовыми коммерческими сценариями: электронный магазин с корзиной, онлайн-запись на слоты, расчет сметы и панель администратора.
               </p>
               <div class="project-features">
-                <div class="feature-item"><strong>E-commerce в чате:</strong> динамическая корзина, пошаговый чекаут, расчет скидки.</div>
-                <div class="feature-item"><strong>Интерактивные FSM-сценарии:</strong> защита от сбоя состояний и дублирования запросов.</div>
-                <div class="feature-item"><strong>SQLite + aiosqlite:</strong> быстрый асинхронный пул соединений без блокировок event loop.</div>
+                <div class="feature-item">
+                  <strong>Продажи и лидогенерация:</strong> Приём и расчёт заказов прямо в мессенджере без ухода клиента на сторонние сайты.
+                </div>
+                <div class="feature-item">
+                  <strong>Калькулятор сметы:</strong> Моментальный расчет стоимости услуг для лидов с авто-сбором контактов в CRM.
+                </div>
+                <div class="feature-item">
+                  <strong>Админ-панель:</strong> Статистика оборота за день, управление заказами и массовая рассылка по базе в 1 клик.
+                </div>
               </div>
               <div class="project-tags">
                 <span class="tag">Python 3.12</span>
@@ -310,9 +362,15 @@
                 <span class="tag">aiosqlite</span>
                 <span class="tag">FSM</span>
                 <span class="tag">AsyncIO</span>
+                <span class="tag">Бот под ключ</span>
               </div>
               <div class="project-footer">
-                <a href="./telegram-bot/" class="btn btn-primary">Исходный код бота &rarr;</a>
+                <a href="https://t.me/g1ghtik?text=Здравствуйте!%20Интересует%20разработка%20Telegram-бота" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-tg-sm">
+                  Заказать Telegram-бота
+                </a>
+                <a href="https://github.com/G1ght25/developer-portfolio/tree/main/telegram-bot" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                  Код на GitHub &rarr;
+                </a>
               </div>
             </div>
 
@@ -334,7 +392,7 @@
                   <div class="tg-chat">
                     <div class="tg-date">Сегодня</div>
                     <div class="tg-msg bot-msg">
-                      Привет! Я официальный бот PandaBar и IT-решений.<br><br>
+                      Привет! Я демонстрационный бот IT-решений.<br><br>
                       Выберите сценарий для интерактивного теста:
                     </div>
 
@@ -369,39 +427,50 @@
             </div>
           </article>
 
-          <!-- PROJECT 3: ECHO SONAR -->
-          <article class="showcase-card">
+          <!-- CASE 3: ECHO SONAR -->
+          <article class="showcase-card glass-card reveal-on-scroll">
             <div class="showcase-info">
               <div class="project-meta">
-                <span class="project-badge">Interactive Web &amp; GameDev</span>
+                <span class="project-badge badge-case">Интерактивный Web &amp; GameDev</span>
                 <span class="project-year">2026</span>
               </div>
-              <h3 class="project-title">Echo Sonar - Атмосферная игра на Canvas</h3>
+              <h3 class="project-title">Echo Sonar — Стелс-экшен на Canvas 2D</h3>
               <p class="project-desc">
-                Глубоководный стелс-экшен на чистом HTML5 Canvas 2D и Web Audio API для платформы Яндекс Игры. Реализованы эхолокация, процедурный синтез звука и физика гидродинамики.
+                Атмосферная браузерная игра с механикой эхолокации в полной темноте без внешних тяжелых движков: математика волновых отражений на Canvas 2D и процедурный Web Audio синтез.
               </p>
               <div class="project-features">
-                <div class="feature-item"><strong>Canvas 2D Engine:</strong> математический рендеринг отражений звуковых волн со скоростью 60 FPS.</div>
-                <div class="feature-item"><strong>Web Audio API:</strong> динамическая генерация синтезаторных импульсов без внешних mp3-файлов.</div>
-                <div class="feature-item"><strong>Instant Play:</strong> возможность опробовать игру прямо в браузере без скачивания.</div>
+                <div class="feature-item">
+                  <strong>Canvas 2D Engine:</strong> 60 FPS, физика импульсов, лучевая проверка препятствий и умные охотники.
+                </div>
+                <div class="feature-item">
+                  <strong>Web Audio API:</strong> Процедурная генерация звуков сонара и сирен без скачивания внешних аудиофайлов.
+                </div>
+                <div class="feature-item">
+                  <strong>Быстрый тест:</strong> Игра запускается прямо внутри терминала ниже в один клик.
+                </div>
               </div>
               <div class="project-tags">
                 <span class="tag">JavaScript</span>
                 <span class="tag">HTML5 Canvas</span>
                 <span class="tag">Web Audio API</span>
-                <span class="tag">Yandex Games SDK</span>
+                <span class="tag">Game Architecture</span>
               </div>
               <div class="project-footer">
-                <a href="./games/echo-sonar/" class="btn btn-primary">Исходный код игры &rarr;</a>
+                <button class="btn btn-primary" id="btn-quick-play">
+                  Запустить в терминале &darr;
+                </button>
+                <a href="https://github.com/G1ght25/developer-portfolio/tree/main/games/echo-sonar" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                  Код на GitHub &rarr;
+                </a>
               </div>
             </div>
 
             <div class="showcase-visual">
               <div class="radar-terminal">
-                <div class="radar-hud-bar">
-                  <span>DEPTH: 1,840M</span>
-                  <span>BATTERY: 82%</span>
-                  <span class="sonar-ready">SONAR: READY [SPACE]</span>
+                <div class="radar-terminal-header">
+                  <div class="terminal-badge"><span class="pulse-dot"></span> CANVAS ENGINE ACTIVE</div>
+                  <div class="terminal-title">ECHO SONAR TERMINAL // 60 FPS</div>
+                  <div class="terminal-specs">WEB AUDIO API</div>
                 </div>
 
                 <div class="radar-screen-container" id="radar-container">
@@ -417,9 +486,9 @@
 
                   <div class="radar-overlay">
                     <div class="radar-title">ECHO SONAR</div>
-                    <div class="radar-sub">Deep Abyss Canvas Engine</div>
+                    <div class="radar-sub">Deep Abyss Canvas Engine • 24 Сектора</div>
                     <button class="btn btn-primary btn-launch-game" id="btn-play-game">
-                      Запустить игру прямо здесь
+                      Запустить гидролокатор прямо здесь
                     </button>
                   </div>
 
@@ -427,9 +496,12 @@
                 </div>
 
                 <div class="radar-controls-hint">
-                  <span>[ Пробел / Click ] Эхо-импульс</span>
-                  <span>[ WASD ] Движение</span>
-                  <button class="btn-fs" id="btn-fullscreen-toggle">На весь экран</button>
+                  <span class="hint-pill">[ Пробел / Клик ] Пуск сонара</span>
+                  <span class="hint-pill">[ WASD / Мышь ] Движение</span>
+                  <button class="btn-fs" id="btn-fullscreen-toggle">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                    На весь экран
+                  </button>
                 </div>
               </div>
             </div>
@@ -439,40 +511,41 @@
       </div>
     </section>
 
+    <!-- EXPERIENCE SECTION -->
     <section id="experience" class="section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Опыт и ключевые компетенции</h2>
-          <p class="section-subtitle">Подход к разработке, стандарты качества и коммерческая экспертиза</p>
+        <div class="section-header reveal-on-scroll">
+          <h2 class="section-title">Подход к разработке и стандарты качества</h2>
+          <p class="section-subtitle">Что отличает мои проекты от шаблонов новичков</p>
         </div>
 
         <div class="experience-timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Проектирование архитектуры</div>
+          <div class="timeline-item glass-card reveal-on-scroll reveal-stagger">
+            <div class="timeline-date">Архитектура и безопасность</div>
             <div class="timeline-content">
-              <h4 class="timeline-title">Отказоустойчивость и безопасность данных</h4>
+              <h4 class="timeline-title">Отказоустойчивость и защита данных бизнеса</h4>
               <p class="timeline-desc">
-                Проектирование клиент-серверного взаимодействия с серверной валидацией всех входящих параметров, предотвращением IDOR и SQL-инъекций, разграничением доступа на основе RBAC и криптографическим хэшированием паролей.
+                Проектирование клиент-серверного взаимодействия с серверной валидацией всех входящих сумм и параметров, предотвращением IDOR и SQL-инъекций, разграничением доступа на основе RBAC и криптографическим хэшированием паролей.
               </p>
             </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-date">Фронтенд разработка</div>
+          <div class="timeline-item glass-card reveal-on-scroll reveal-stagger">
+            <div class="timeline-date">Фронтенд и UX</div>
             <div class="timeline-content">
-              <h4 class="timeline-title">Эргономичный и доступный интерфейс (Foolproof UX)</h4>
+              <h4 class="timeline-title">Адаптивный и понятный интерфейс (Foolproof UX)</h4>
               <p class="timeline-desc">
-                Создание интерфейсов с минимальным когнитивным сопротивлением: моментальная обратная связь, однозначные CTA-элементы, плавная анимация, читаемые шрифты и контрастная темная тема.
+                Создание интерфейсов с минимальным когнитивным сопротивлением: моментальная тактильная обратная связь, однозначные CTA-элементы, плавная анимация, читаемые шрифты и безупречная верстка на смартфонах от 360px до 4K.
               </p>
             </div>
           </div>
 
-          <div class="timeline-item">
+          <div class="timeline-item glass-card reveal-on-scroll reveal-stagger">
             <div class="timeline-date">Бэкенд и автоматизация</div>
             <div class="timeline-content">
               <h4 class="timeline-title">Асинхронные боты и микросервисы</h4>
               <p class="timeline-desc">
-                Разработка масштабируемых ботов с поддержкой сотен одновременных диалогов благодаря пулу соединений SQLite/PostgreSQL, фоновым задачам и надежной машине состояний (FSM).
+                Разработка масштабируемых ботов с поддержкой сотен одновременных диалогов благодаря пулу соединений SQLite/PostgreSQL, фоновым задачам и надежной машине состояний (FSM), не зависающей при сбоях сети.
               </p>
             </div>
           </div>
@@ -480,14 +553,41 @@
       </div>
     </section>
 
-    <section id="contacts" class="section bg-alt">
-      <div class="container contact-box">
-        <h2 class="section-title">Готовы обсудить проект?</h2>
-        <p class="contact-desc">
-          Открыт для предложений по разработке веб-сервисов, ботов, интеграций и комплексных IT-решений.
-        </p>
-        <div class="contact-buttons">
-          <a href="https://github.com/G1ght25" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Профиль на GitHub (G1ght25)</a>
+    <!-- CONTACTS SECTION (100% TELEGRAM FOCUS) -->
+    <section id="contacts" class="section">
+      <div class="container">
+        <div class="contact-card glass-card reveal-on-scroll">
+          <div class="contact-glow-aura"></div>
+          <div class="contact-header">
+            <div class="badge-status online-badge">
+              <span class="status-indicator"></span> На связи в Telegram • Отвечаю за 10–15 минут
+            </div>
+            <h2 class="contact-main-title">Готовы обсудить ваш проект?</h2>
+            <p class="contact-subtitle">
+              Напишите мне напрямую в Telegram — обсудим задачу, сориентирую по архитектуре, подберу стек и назову точные сроки и стоимость реализации.
+            </p>
+          </div>
+
+          <div class="contact-action-grid">
+            <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="btn btn-tg-large">
+              <svg class="tg-svg-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+              <span>Открыть диалог в Telegram (<strong>@g1ghtik</strong>)</span>
+            </a>
+
+            <button class="btn btn-copy-tg" id="btn-copy-username" data-username="@g1ghtik" title="Скопировать ник в буфер">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copy-btn-text">Скопировать @g1ghtik</span>
+            </button>
+          </div>
+
+          <div class="contact-direct-hint">
+            Прямая ссылка: <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer">t.me/g1ghtik</a>
+          </div>
         </div>
       </div>
     </section>
@@ -496,8 +596,12 @@
   <footer class="footer">
     <div class="container footer-content">
       <p>&copy; 2026 G1ght25. Все права защищены. Открытое портфолио проектов.</p>
+      <a href="https://github.com/G1ght25" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub: G1ght25</a>
     </div>
   </footer>
+
+  <!-- Toast notification -->
+  <div id="toast-notify" class="toast-notify">Ник @g1ghtik скопирован в буфер!</div>
 
   <script src="app.js"></script>
 </body>
