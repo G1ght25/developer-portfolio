@@ -130,119 +130,311 @@
       </div>
     </section>
 
+    <!-- INTERACTIVE SHOWCASE SECTION -->
     <section id="projects" class="section bg-alt">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Демонстрационные проекты</h2>
-          <p class="section-subtitle">Ключевые работы, доступные с исходным кодом в этом репозитории</p>
+          <p class="section-subtitle">Интерактивные шоукейсы коммерческих продуктов, ботов и веб-приложений</p>
         </div>
 
-        <div class="projects-grid">
-          <!-- Project 1: PandaBar -->
-          <article class="project-card featured">
-            <div class="project-header">
+        <div class="showcase-list">
+
+          <!-- PROJECT 1: PANDABAR -->
+          <article class="showcase-card">
+            <div class="showcase-info">
               <div class="project-meta">
                 <span class="project-badge">Enterprise Full-Stack</span>
                 <span class="project-year">2026</span>
               </div>
               <h3 class="project-title">PandaBar - Сервис доставки еды и KDS-система</h3>
               <p class="project-desc">
-                Полнофункциональный программный комплекс для сети ресторанов доставки: витрина покупателя с каталогом и умной корзиной, экран повара (KDS) для кухни, курьерский терминал и панель управляющего с расчетом аналитики.
+                Масштабируемый комплекс для ресторанной сети: клиентская витрина с умной корзиной, интерактивный экран повара кухни (KDS), мобильный терминал курьера и автоматическая печать накладных.
               </p>
-            </div>
-            <div class="project-features">
-              <div class="feature-item">
-                <strong>Ролевой доступ (RBAC):</strong> 5 изолированных ролей (Клиент, Повар, Курьер, Управляющий, Администратор).
+              <div class="project-features">
+                <div class="feature-item"><strong>RBAC Архитектура:</strong> 5 изолированных ролей (Клиент, Повар, Курьер, Менеджер, Администратор).</div>
+                <div class="feature-item"><strong>FSM Заказов:</strong> защищенные переходы статусов без возможности подделки сумм на клиенте.</div>
+                <div class="feature-item"><strong>Автоматизация кухни:</strong> цветовая индикация времени приготовления и интеграция с термопринтерами чеков.</div>
               </div>
-              <div class="feature-item">
-                <strong>Жизненный цикл заказа (FSM):</strong> строго контролируемые переходы статусов без возможности фальсификации сумм.
+              <div class="project-tags">
+                <span class="tag">React 19</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Tailwind CSS</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">RBAC</span>
               </div>
-              <div class="feature-item">
-                <strong>UX/UI эргономика:</strong> звуковое сопровождение оформления, шкала прогресса бесплатной доставки, студийная фотосъемка блюд.
+              <div class="project-footer">
+                <a href="./pandabar/" class="btn btn-primary">Исходный код проекта &rarr;</a>
               </div>
             </div>
-            <div class="project-tags">
-              <span class="tag">React 19</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">Tailwind CSS</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">Express</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">RBAC</span>
-            </div>
-            <div class="project-footer">
-              <a href="./pandabar/" class="project-link">Перейти к коду проекта &rarr;</a>
+
+            <div class="showcase-visual">
+              <div class="device-switcher">
+                <button class="switch-btn active" data-tab="showcase">Витрина</button>
+                <button class="switch-btn" data-tab="kds">KDS Кухня</button>
+                <button class="switch-btn" data-tab="receipt">Чек 1С / KDS</button>
+                <button class="switch-btn" data-tab="courier">Курьер</button>
+              </div>
+
+              <div class="laptop-mockup">
+                <div class="laptop-screen">
+                  <div class="screen-camera"></div>
+
+                  <!-- VIEW 1: Витрина -->
+                  <div class="screen-view active" id="view-showcase">
+                    <div class="mockup-header">
+                      <div class="mockup-brand">PandaBar <span>[Барнаул]</span></div>
+                      <div class="mockup-cart-badge">Корзина: 2 шт | 1 490 RUB</div>
+                    </div>
+                    <div class="delivery-progress">
+                      <span>До бесплатной доставки: 210 RUB</span>
+                      <div class="progress-track"><div class="progress-bar" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="food-grid">
+                      <div class="food-card">
+                        <div class="food-img sushi-img1"></div>
+                        <div class="food-title">Сет Самурай XXL</div>
+                        <div class="food-price">1 490 RUB <span class="added-badge">В корзине (1)</span></div>
+                      </div>
+                      <div class="food-card">
+                        <div class="food-img sushi-img2"></div>
+                        <div class="food-title">Филадельфия Prime</div>
+                        <div class="food-price">475 RUB <button class="mini-add-btn">+</button></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 2: KDS Кухня -->
+                  <div class="screen-view" id="view-kds">
+                    <div class="kds-header">
+                      <span>KDS: Цех Суши | 2 активных чека</span>
+                      <span class="kds-status-live">[СМЕНА ОНЛАЙН]</span>
+                    </div>
+                    <div class="kds-tickets">
+                      <div class="kds-ticket warn">
+                        <div class="ticket-head">
+                          <strong>Заказ #104 [Доставка]</strong>
+                          <span class="ticket-timer">08:15</span>
+                        </div>
+                        <ul class="ticket-items">
+                          <li>1x Сет Самурай XXL [Готовится]</li>
+                          <li>1x Запеченные мидии [В печи]</li>
+                          <li>2x Соус спайси [Собрано]</li>
+                        </ul>
+                        <button class="kds-btn ready">ГОТОВО</button>
+                      </div>
+                      <div class="kds-ticket fresh">
+                        <div class="ticket-head">
+                          <strong>Заказ #105 [Самовывоз]</strong>
+                          <span class="ticket-timer">02:40</span>
+                        </div>
+                        <ul class="ticket-items">
+                          <li>1x Филадельфия Prime</li>
+                          <li>2x Морс брусничный 0.5л</li>
+                        </ul>
+                        <button class="kds-btn start">В РАБОТУ</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 3: Чек 1С -->
+                  <div class="screen-view" id="view-receipt">
+                    <div class="receipt-paper">
+                      <div class="receipt-header">
+                        <strong>ПАНДА ДОСТАВКА ГОТОВЫХ БЛЮД</strong><br>
+                        пр-т Калинина 116 | тел: 600-417<br>
+                        -----------------------------------<br>
+                        НАКЛАДНАЯ #104 от 17.09.2026<br>
+                        -----------------------------------
+                      </div>
+                      <div class="receipt-lines">
+                        <div>1. Сет Самурай XXL ......... 1 490 RUB</div>
+                        <div>2. Морс брусничный x2 ...... 280 RUB</div>
+                        <div>3. Соус Спайси ............. 45 RUB</div>
+                      </div>
+                      <div class="receipt-total">
+                        ИТОГО: 1 815 RUB<br>
+                        ОПЛАЧЕНО: КАРТОЙ ОНЛАЙН<br>
+                        Адрес: ул. Ленина, 45, кв. 18
+                      </div>
+                      <div class="receipt-barcode">|||| | | ||||| || |||||| |</div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 4: Курьер -->
+                  <div class="screen-view" id="view-courier">
+                    <div class="courier-card">
+                      <div class="courier-head">
+                        <span class="badge-route">Маршрут доставки</span>
+                        <span class="eta">14 мин</span>
+                      </div>
+                      <div class="courier-dest">
+                        <strong>Заказ #104 (1 815 RUB)</strong>
+                        <p>ул. Ленина, д. 45, под. 2, эт. 4, кв. 18</p>
+                        <p>Клиент: Елена (+7 999 123-45-67)</p>
+                      </div>
+                      <div class="courier-actions">
+                        <button class="courier-call">Вызов</button>
+                        <button class="courier-done">Вручено</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="laptop-base"></div>
+              </div>
             </div>
           </article>
 
-          <!-- Project 2: Telegram Bot -->
-          <article class="project-card">
-            <div class="project-header">
+          <!-- PROJECT 2: TELEGRAM BOT -->
+          <article class="showcase-card">
+            <div class="showcase-info">
               <div class="project-meta">
                 <span class="project-badge">Automated Bot Platform</span>
                 <span class="project-year">2026</span>
               </div>
-              <h3 class="project-title">Telegram Portfolio &amp; E-Commerce Bot</h3>
+              <h3 class="project-title">Telegram Portfolio &amp; Business Suite</h3>
               <p class="project-desc">
-                Асинхронный многофункциональный Telegram-бот для автоматизации коммерческих сценариев с 4 изолированными бизнес-направлениями и панелью администратора.
+                Высоконагруженный асинхронный Telegram-бот на aiogram 3.x с 4 готовыми коммерческими направлениями: онлайн-магазин, бронирование слотов, интерактивный калькулятор сметы и панель администратора.
               </p>
-            </div>
-            <div class="project-features">
-              <div class="feature-item">
-                <strong>Интернет-магазин:</strong> категории товаров, динамический счетчик позиций, пошаговый чекаут и формирование электронного чека.
+              <div class="project-features">
+                <div class="feature-item"><strong>E-commerce в чате:</strong> динамическая корзина, пошаговый чекаут, расчет скидки.</div>
+                <div class="feature-item"><strong>Интерактивные FSM-сценарии:</strong> защита от сбоя состояний и дублирования запросов.</div>
+                <div class="feature-item"><strong>SQLite + aiosqlite:</strong> быстрый асинхронный пул соединений без блокировок event loop.</div>
               </div>
-              <div class="feature-item">
-                <strong>Онлайн-запись:</strong> мастер бронирования услуг со слотами дат и времени, отмена и перенос записей.
+              <div class="project-tags">
+                <span class="tag">Python 3.12</span>
+                <span class="tag">aiogram 3.x</span>
+                <span class="tag">aiosqlite</span>
+                <span class="tag">FSM</span>
+                <span class="tag">AsyncIO</span>
               </div>
-              <div class="feature-item">
-                <strong>Лидогенерация и рассылки:</strong> интерактивный квиз расчета сметы проекта и массовая рассылка по пользователям.
+              <div class="project-footer">
+                <a href="./telegram-bot/" class="btn btn-primary">Исходный код бота &rarr;</a>
               </div>
             </div>
-            <div class="project-tags">
-              <span class="tag">Python 3.12</span>
-              <span class="tag">aiogram 3.x</span>
-              <span class="tag">aiosqlite</span>
-              <span class="tag">FSM</span>
-              <span class="tag">AsyncIO</span>
-            </div>
-            <div class="project-footer">
-              <a href="./telegram-bot/" class="project-link">Перейти к коду бота &rarr;</a>
+
+            <div class="showcase-visual">
+              <div class="phone-mockup">
+                <div class="phone-notch"><div class="dynamic-island"></div></div>
+                <div class="phone-screen">
+                  <div class="tg-header">
+                    <span class="tg-back">&lt;</span>
+                    <div class="tg-user">
+                      <div class="tg-avatar">PB</div>
+                      <div class="tg-meta">
+                        <div class="tg-name">Panda Assistant <span class="tg-badge">bot</span></div>
+                        <div class="tg-status">онлайн</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tg-chat">
+                    <div class="tg-date">Сегодня</div>
+                    <div class="tg-msg bot-msg">
+                      Привет! Я официальный бот PandaBar и IT-решений.<br><br>
+                      Выберите сценарий для интерактивного теста:
+                    </div>
+
+                    <div class="tg-keyboard">
+                      <button class="tg-key active" data-msg="shop">Доставка еды</button>
+                      <button class="tg-key" data-msg="booking">Онлайн-запись</button>
+                      <button class="tg-key" data-msg="quote">Расчет сметы</button>
+                      <button class="tg-key" data-msg="admin">Админ-панель</button>
+                    </div>
+
+                    <div class="tg-msg bot-msg reply-bubble" id="tg-reply-box">
+                      <strong>Корзина заказа #104:</strong><br>
+                      - Сет Самурай XXL (1 шт) - 1 490 RUB<br>
+                      - Морс брусничный (2 шт) - 280 RUB<br>
+                      -------------------<br>
+                      Итого: <strong>1 770 RUB</strong> (Доставка: 0 RUB)<br>
+                      Статус: <em>Ожидает подтверждения</em>
+                      <div class="tg-inline-action">
+                        <button class="tg-act-btn">Подтвердить</button>
+                        <button class="tg-act-btn cancel">Отмена</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tg-input-bar">
+                    <span>[+]</span>
+                    <div class="tg-placeholder">Сообщение...</div>
+                    <span>[MIC]</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
 
-          <!-- Project 3: Echo Sonar -->
-          <article class="project-card">
-            <div class="project-header">
+          <!-- PROJECT 3: ECHO SONAR -->
+          <article class="showcase-card">
+            <div class="showcase-info">
               <div class="project-meta">
                 <span class="project-badge">Interactive Web &amp; GameDev</span>
                 <span class="project-year">2026</span>
               </div>
               <h3 class="project-title">Echo Sonar - Атмосферная игра на Canvas</h3>
               <p class="project-desc">
-                Оригинальная браузерная игра для платформы Яндекс Игры, разработанная на чистом HTML5 Canvas с процедурным звуковым синтезом и эхолокационной игровой механикой.
+                Глубоководный стелс-экшен на чистом HTML5 Canvas 2D и Web Audio API для платформы Яндекс Игры. Реализованы эхолокация, процедурный синтез звука и физика гидродинамики.
               </p>
-            </div>
-            <div class="project-features">
-              <div class="feature-item">
-                <strong>Canvas 2D Engine:</strong> математический рендеринг звуковых волн и отражений без тяжелых фреймворков.
+              <div class="project-features">
+                <div class="feature-item"><strong>Canvas 2D Engine:</strong> математический рендеринг отражений звуковых волн со скоростью 60 FPS.</div>
+                <div class="feature-item"><strong>Web Audio API:</strong> динамическая генерация синтезаторных импульсов без внешних mp3-файлов.</div>
+                <div class="feature-item"><strong>Instant Play:</strong> возможность опробовать игру прямо в браузере без скачивания.</div>
               </div>
-              <div class="feature-item">
-                <strong>Web Audio API:</strong> динамическая генерация звуковых импульсов в реальном времени.
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">HTML5 Canvas</span>
+                <span class="tag">Web Audio API</span>
+                <span class="tag">Yandex Games SDK</span>
               </div>
-              <div class="feature-item">
-                <strong>Platform SDK:</strong> интеграция системы сохранений и рекламы Яндекс Игр.
+              <div class="project-footer">
+                <a href="./games/echo-sonar/" class="btn btn-primary">Исходный код игры &rarr;</a>
               </div>
             </div>
-            <div class="project-tags">
-              <span class="tag">JavaScript</span>
-              <span class="tag">HTML5 Canvas</span>
-              <span class="tag">Web Audio API</span>
-              <span class="tag">Yandex Games SDK</span>
-            </div>
-            <div class="project-footer">
-              <a href="./games/echo-sonar/" class="project-link">Перейти к коду игры &rarr;</a>
+
+            <div class="showcase-visual">
+              <div class="radar-terminal">
+                <div class="radar-hud-bar">
+                  <span>DEPTH: 1,840M</span>
+                  <span>BATTERY: 82%</span>
+                  <span class="sonar-ready">SONAR: READY [SPACE]</span>
+                </div>
+
+                <div class="radar-screen-container" id="radar-container">
+                  <div class="radar-scan-grid">
+                    <div class="sonar-ring r1"></div>
+                    <div class="sonar-ring r2"></div>
+                    <div class="sonar-ring r3"></div>
+                    <div class="radar-sweep-beam"></div>
+                    <div class="blip player-probe"></div>
+                    <div class="blip crystal-target"></div>
+                    <div class="blip enemy-echo"></div>
+                  </div>
+
+                  <div class="radar-overlay">
+                    <div class="radar-title">ECHO SONAR</div>
+                    <div class="radar-sub">Deep Abyss Canvas Engine</div>
+                    <button class="btn btn-primary btn-launch-game" id="btn-play-game">
+                      Запустить игру прямо здесь
+                    </button>
+                  </div>
+
+                  <iframe id="game-frame" class="game-iframe" data-src="./games/echo-sonar/index.html"></iframe>
+                </div>
+
+                <div class="radar-controls-hint">
+                  <span>[ Пробел / Click ] Эхо-импульс</span>
+                  <span>[ WASD ] Движение</span>
+                  <button class="btn-fs" id="btn-fullscreen-toggle">На весь экран</button>
+                </div>
+              </div>
             </div>
           </article>
+
         </div>
       </div>
     </section>
