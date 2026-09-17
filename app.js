@@ -697,37 +697,79 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 8. ECHO SONAR GAME LAUNCHER
+  // 8. ECHO SONAR GAME LAUNCHER & FULLSCREEN CONTROLS
   // ==========================================================================
+  const btnStartSonarFs = document.getElementById('btn-start-sonar-fs');
   const btnStartSonar = document.getElementById('btn-start-sonar');
   const sonarOverlay = document.getElementById('sonar-launch-overlay');
   const sonarIframe = document.getElementById('sonar-iframe');
   const btnSonarFullscreen = document.getElementById('btn-sonar-fullscreen');
+  const sonarDisplayBox = document.getElementById('sonar-display-box');
 
-  const launchEchoSonar = () => {
-    if (sonarOverlay) sonarOverlay.style.display = 'none';
+  const focusSonarIframe = () => {
+    try {
+      if (sonarIframe && sonarIframe.contentWindow) {
+        sonarIframe.contentWindow.focus();
+      }
+    } catch (e) {}
+  };
+
+  const launchEchoSonar = (requestFs = false) => {
+    if (sonarOverlay) {
+      sonarOverlay.classList.add('hidden');
+      sonarOverlay.style.display = 'none';
+    }
     if (sonarIframe) {
       if (!sonarIframe.src || sonarIframe.src === 'about:blank' || !sonarIframe.classList.contains('active')) {
         sonarIframe.src = sonarIframe.getAttribute('data-src');
         sonarIframe.classList.add('active');
       }
+
+      if (requestFs) {
+        try {
+          if (sonarIframe.requestFullscreen) {
+            sonarIframe.requestFullscreen().catch(() => {});
+          } else if (sonarIframe.webkitRequestFullscreen) {
+            sonarIframe.webkitRequestFullscreen();
+          } else if (sonarIframe.msRequestFullscreen) {
+            sonarIframe.msRequestFullscreen();
+          }
+        } catch (err) {
+          console.warn('Fullscreen request failed:', err);
+        }
+      }
+
+      focusSonarIframe();
+      setTimeout(focusSonarIframe, 200);
+      setTimeout(focusSonarIframe, 500);
     }
   };
 
-  if (btnStartSonar) btnStartSonar.addEventListener('click', launchEchoSonar);
+  if (btnStartSonarFs) {
+    btnStartSonarFs.addEventListener('click', () => launchEchoSonar(true));
+  }
+
+  if (btnStartSonar) {
+    btnStartSonar.addEventListener('click', () => launchEchoSonar(false));
+  }
 
   if (btnSonarFullscreen && sonarIframe) {
-    btnSonarFullscreen.addEventListener('click', () => {
-      launchEchoSonar();
-      if (sonarIframe.requestFullscreen) {
-        sonarIframe.requestFullscreen();
-      } else if (sonarIframe.webkitRequestFullscreen) {
-        sonarIframe.webkitRequestFullscreen();
-      } else if (sonarIframe.msRequestFullscreen) {
-        sonarIframe.msRequestFullscreen();
+    btnSonarFullscreen.addEventListener('click', () => launchEchoSonar(true));
+  }
+
+  if (sonarDisplayBox) {
+    sonarDisplayBox.addEventListener('click', () => {
+      if (sonarIframe && sonarIframe.classList.contains('active')) {
+        focusSonarIframe();
       }
     });
   }
+
+  document.addEventListener('fullscreenchange', () => {
+    if (document.fullscreenElement === sonarIframe) {
+      focusSonarIframe();
+    }
+  });
 
   // ==========================================================================
   // 8. TELEGRAM USERNAME COPY WITH TOAST

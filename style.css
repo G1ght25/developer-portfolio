@@ -1857,52 +1857,59 @@ body {
 .sonar-mini-terminal {
   background: #0d0d10;
   border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   margin-bottom: 24px;
   flex: 1;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
 }
 
 .sonar-top-badge {
   background: #141418;
-  padding: 8px 14px;
+  padding: 10px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--text-zinc);
   border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: 0.04em;
 }
 
 .sonar-display-area {
-  height: 200px;
+  flex: 1;
+  min-height: 280px;
   position: relative;
-  background: radial-gradient(circle, #1a080c 0%, #09090b 80%);
+  background: radial-gradient(circle at 50% 50%, #1c080e 0%, #09090b 85%);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .radar-crosshair {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(225, 29, 72, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(225, 29, 72, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
+    linear-gradient(rgba(225, 29, 72, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 29, 72, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
 }
 
 .sonar-sweep {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 180px;
-  height: 180px;
+  width: 260px;
+  height: 260px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: conic-gradient(from 0deg, rgba(225, 29, 72, 0.35) 0deg, transparent 60deg);
+  background: conic-gradient(from 0deg, rgba(225, 29, 72, 0.3) 0deg, transparent 70deg);
   animation: sweep-spin 4s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes sweep-spin {
@@ -1917,28 +1924,73 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(9, 9, 11, 0.7);
+  background: rgba(9, 9, 11, 0.78);
+  backdrop-filter: blur(4px);
   z-index: 5;
   transition: opacity 0.25s ease;
+  padding: 24px;
+  text-align: center;
 }
 
 .sonar-launch-overlay.hidden {
   opacity: 0;
   pointer-events: none;
+  display: none !important;
 }
 
 .s-title {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: #fff;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 20px rgba(225, 29, 72, 0.5);
 }
 
 .s-sub {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--text-silver);
-  margin-bottom: 12px;
+  margin-top: 4px;
+  margin-bottom: 18px;
+}
+
+.sonar-launch-btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.btn-sonar-launch-main {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(225, 29, 72, 0.45);
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.btn-sonar-launch-alt {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 4px 12px;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.btn-sonar-launch-alt:hover {
+  color: var(--text-silver);
 }
 
 .sonar-frame {
@@ -1946,6 +1998,7 @@ body {
   height: 100%;
   border: none;
   display: none;
+  flex: 1;
 }
 
 .sonar-frame.active {
@@ -1953,24 +2006,83 @@ body {
 }
 
 .sonar-controls-bar {
-  background: #141418;
-  padding: 8px 14px;
+  background: #111115;
+  padding: 12px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.72rem;
-  color: var(--text-zinc);
   border-top: 1px solid var(--border-subtle);
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.btn-fs-sm {
-  background: transparent;
-  border: 1px solid var(--border-subtle);
+.sonar-key-hints {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
   color: var(--text-silver);
-  padding: 2px 8px;
+}
+
+.sonar-kbd {
+  display: inline-block;
+  background: #1c1c22;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 7px;
   border-radius: 4px;
-  font-size: 0.7rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.sonar-hint-label {
+  color: var(--text-zinc);
+  margin-right: 6px;
+}
+
+.btn-sonar-expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
   cursor: pointer;
+  box-shadow: 0 3px 14px rgba(225, 29, 72, 0.38);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-sonar-expand:hover {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(225, 29, 72, 0.58);
+}
+
+.btn-sonar-expand:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+  .sonar-controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .btn-sonar-expand {
+    justify-content: center;
+    width: 100%;
+    padding: 11px 16px;
+  }
+  .sonar-key-hints {
+    justify-content: center;
+  }
 }
 
 /* SKILLS SECTION */
