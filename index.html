@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Портфолио проектов и резюме разработчика | G1ght25</title>
+  <title>G1ght25 — Цифровые решения, Web-системы &amp; Telegram-боты</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Ambient background glow elements -->
-  <div class="ambient-glow glow-top-right"></div>
-  <div class="ambient-glow glow-mid-left"></div>
-  <div class="ambient-glow glow-bottom-center"></div>
+  <!-- Scroll progress bar (Google Chrome style) -->
+  <div id="scroll-progress" class="scroll-progress-bar"></div>
 
-  <header class="header glass-header">
+  <!-- Header -->
+  <header class="header">
     <div class="container header-container">
       <a href="#" class="logo">
-        <span class="logo-accent">&lt;/&gt;</span> G1ght25.dev
+        <span class="logo-mark">G</span> G1ght25<span class="logo-dot">.</span>
       </a>
       <nav class="nav">
         <a href="#about" class="nav-link">Обо мне</a>
+        <a href="#pandabar" class="nav-link">Кейс PandaBar</a>
+        <a href="#projects" class="nav-link">Проекты</a>
         <a href="#skills" class="nav-link">Стек</a>
-        <a href="#projects" class="nav-link">Кейсы и проекты</a>
-        <a href="#experience" class="nav-link">Опыт</a>
-        <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-tg">
+        <a href="#experience" class="nav-link">Подход</a>
+        <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="nav-btn-tg">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
           </svg>
@@ -39,56 +39,492 @@
     <!-- HERO SECTION -->
     <section id="about" class="hero-section">
       <div class="container hero-grid">
-        <div class="hero-content reveal-on-scroll">
-          <div class="badge-status">
-            <span class="status-indicator"></span> Доступен для коммерческих заказов
+        <div class="hero-content chrome-reveal">
+          <div class="hero-pill-badge">
+            <span class="pulse-red-dot"></span> Доступен для новых коммерческих проектов
           </div>
           <h1 class="hero-title">
-            Разработка веб-сервисов &amp;<br>
-            <span class="gradient-text">Telegram-ботов для бизнеса</span>
+            Инженер цифровых решений &amp;<br>
+            <span class="text-crimson">Full-Stack разработчик</span>
           </h1>
           <p class="hero-desc">
-            Проектирую и создаю надежные цифровые решения под ключ: автономные системы доставки еды и KDS-кухни на React 19 / TypeScript, высоконагруженных ботов на aiogram 3.x и интерактивные веб-интерфейсы. Быстро, отказоустойчиво, с понятным кодом.
+            Разрабатываю высоконагруженные системы доставки еды, KDS-экраны для поваров, умных Telegram-ботов на aiogram 3.x и современные веб-приложения на React 19. Строгая архитектура, продуманный UX, запуск под ключ.
           </p>
           <div class="hero-actions">
-            <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-tg-hero">
+            <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="btn btn-crimson btn-hero-cta">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
               </svg>
               <span>Написать в Telegram (@g1ghtik)</span>
             </a>
-            <a href="#projects" class="btn btn-secondary">Смотреть проекты &darr;</a>
+            <a href="#pandabar" class="btn btn-secondary">
+              <span>Интерактивный кейс</span> &darr;
+            </a>
           </div>
         </div>
 
-        <div class="hero-card glass-card reveal-on-scroll">
-          <div class="card-header">
-            <div class="window-dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
+        <div class="hero-telemetry-card chrome-reveal">
+          <div class="telemetry-header">
+            <div class="terminal-dots">
+              <span class="t-dot"></span>
+              <span class="t-dot"></span>
+              <span class="t-dot"></span>
             </div>
-            <span class="card-title-badge">developer_profile.json</span>
+            <span class="telemetry-title">system_runtime_v2.json</span>
           </div>
-          <div class="card-body">
-            <pre class="code-block"><code>{
-  "developer": "G1ght25",
-  "telegram": "@g1ghtik",
-  "role": "Full-Stack Engineer",
-  "primary_stack": [
-    "TypeScript / React 19",
-    "Python / aiogram 3.x",
-    "Node.js / Express / REST",
-    "PostgreSQL / SQLite"
+          <div class="telemetry-body">
+            <pre class="telemetry-code"><code>{
+  <span class="c-key">"engineer"</span>: <span class="c-val">"G1ght25"</span>,
+  <span class="c-key">"primary_contact"</span>: <span class="c-accent">"t.me/g1ghtik"</span>,
+  <span class="c-key">"architecture"</span>: [
+    <span class="c-val">"React 19 / TypeScript"</span>,
+    <span class="c-val">"Python 3.12 / aiogram 3.x"</span>,
+    <span class="c-val">"FastAPI / Node.js Express"</span>,
+    <span class="c-val">"PostgreSQL / SQLite"</span>
   ],
-  "solutions": [
-    "Food Delivery & KDS Suites",
-    "E-commerce & Booking Bots",
-    "RBAC Security Architectures",
-    "HTML5 Canvas Interactive Apps"
+  <span class="c-key">"core_products"</span>: [
+    <span class="c-val">"Food Delivery Suites &amp; KDS"</span>,
+    <span class="c-val">"E-Commerce &amp; Lead Bots"</span>,
+    <span class="c-val">"Multi-Role RBAC Systems"</span>
   ],
-  "commercial_ready": true
+  <span class="c-key">"production_status"</span>: <span class="c-accent">"READY"</span>
 }</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENDLESS TICKER MARQUEE (Google Chrome Style) -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span class="marquee-item">PANDABAR KDS КУХНИ</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">TELEGRAM AIOGRAM 3.X</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">ЭКОНОМИЯ 35% НА АГРЕГАТОРАХ</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">REACT 19 &amp; TYPESCRIPT</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">ПЕРЕДАЧА ЧЕКА ЗА 1 СЕКУНДУ</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">HTML5 CANVAS 2D GAMES</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">POSTGRESQL &amp; SQLITE FSM</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">PANDABAR KDS КУХНИ</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">TELEGRAM AIOGRAM 3.X</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">ЭКОНОМИЯ 35% НА АГРЕГАТОРАХ</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">REACT 19 &amp; TYPESCRIPT</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">ПЕРЕДАЧА ЧЕКА ЗА 1 СЕКУНДУ</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">HTML5 CANVAS 2D GAMES</span>
+        <span class="marquee-sep">&bull;</span>
+        <span class="marquee-item">POSTGRESQL &amp; SQLITE FSM</span>
+        <span class="marquee-sep">&bull;</span>
+      </div>
+    </div>
+
+    <!-- PANDABAR FEATURED SHOWCASE (INTERACTIVE RESTAURANT STATION) -->
+    <section id="pandabar" class="section pandabar-section">
+      <div class="container">
+        <div class="section-badge-header chrome-reveal">
+          <span class="badge-tag">КЛЮЧЕВОЙ КЕЙС // FOODTECH &amp; ДОСТАВКА</span>
+          <h2 class="section-headline">PandaBar — Комплекс доставки еды и KDS-кухня</h2>
+          <p class="section-lead">
+            Полный цикл автоматизации для сетей доставки: онлайн-витрина с авто-расчетом чека, экран поваров с таймерами и автоматическая генерация кассовой накладной.
+          </p>
+
+          <!-- Business metrics row -->
+          <div class="metrics-strip">
+            <div class="metric-box">
+              <span class="metric-num">До 35%</span>
+              <span class="metric-label">Экономия с каждого чека без комиссий агрегаторов</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-num">1.2 сек</span>
+              <span class="metric-label">Скорость передачи заказа из витрины на экран повара</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-num">100%</span>
+              <span class="metric-label">Автономность: склад, меню, роли и печать накладных</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- THE INTERACTIVE WORKSTATION -->
+        <div class="station-console chrome-reveal">
+          <div class="station-topbar">
+            <div class="station-modes-nav" id="station-nav">
+              <button class="mode-pill active" data-tab="storefront">
+                <span class="pill-dot"></span> 1. Витрина доставки
+              </button>
+              <button class="mode-pill" data-tab="kds">
+                <span class="pill-dot"></span> 2. KDS Кухня повара
+              </button>
+              <button class="mode-pill" data-tab="receipt">
+                <span class="pill-dot"></span> 3. Накладная 1С
+              </button>
+              <button class="mode-pill" data-tab="courier">
+                <span class="pill-dot"></span> 4. Курьер
+              </button>
+            </div>
+            <div class="station-status-indicator">
+              <span class="pulse-green"></span> СЕРВЕР ОНЛАЙН
+            </div>
+          </div>
+
+          <!-- TAB 1: STOREFRONT WITH REAL FOOD PHOTOS -->
+          <div class="station-tab-view active" id="tab-storefront">
+            <div class="storefront-header">
+              <div class="storefront-brand">
+                <strong>PandaBar</strong> <span>[Барнаул, пр-т Калинина 116]</span>
+              </div>
+              <div class="storefront-cart-summary">
+                Корзина: <strong id="cart-item-count">2</strong> шт &bull; <strong id="cart-total-sum">930</strong> RUB
+              </div>
+            </div>
+
+            <!-- Free delivery interactive progress bar -->
+            <div class="free-delivery-card">
+              <div class="delivery-status-row">
+                <span id="delivery-progress-label">До бесплатной доставки осталось: <strong>70 RUB</strong></span>
+                <span class="threshold-pill">Порог: 1 000 RUB</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="delivery-progress-fill" style="width: 93%;"></div>
+              </div>
+            </div>
+
+            <!-- Real food items grid -->
+            <div class="dishes-catalog-grid">
+              <!-- Dish 1 -->
+              <div class="dish-card" data-id="california" data-name="Калифорния с креветкой" data-price="490">
+                <div class="dish-media">
+                  <img src="./assets/menu/california_shrimp.webp" alt="Калифорния с креветкой" loading="lazy" class="dish-img">
+                  <span class="dish-tag">Хит</span>
+                </div>
+                <div class="dish-content">
+                  <div class="dish-info-row">
+                    <h4 class="dish-title">Калифорния с креветкой</h4>
+                    <span class="dish-price">490 ₽</span>
+                  </div>
+                  <p class="dish-desc">Тигровая креветка, спелый авокадо, икра тобико, японский майонез.</p>
+                  <button class="btn-add-cart" data-dish="california">+ В корзину</button>
+                </div>
+              </div>
+
+              <!-- Dish 2 -->
+              <div class="dish-card" data-id="bonita" data-name="Бонита Чиз" data-price="440">
+                <div class="dish-media">
+                  <img src="./assets/menu/bonita.webp" alt="Бонита Чиз" loading="lazy" class="dish-img">
+                  <span class="dish-tag">Шеф</span>
+                </div>
+                <div class="dish-content">
+                  <div class="dish-info-row">
+                    <h4 class="dish-title">Бонита Чиз</h4>
+                    <span class="dish-price">440 ₽</span>
+                  </div>
+                  <p class="dish-desc">Сливочный сыр, копченый лосось, стружка тунца бонито, огурец.</p>
+                  <button class="btn-add-cart in-cart" data-dish="bonita">&#10003; В корзине (1)</button>
+                </div>
+              </div>
+
+              <!-- Dish 3 -->
+              <div class="dish-card" data-id="baked-khokku" data-name="Запеченный Хокку" data-price="485">
+                <div class="dish-media">
+                  <img src="./assets/menu/baked-rolls-khokku.webp" alt="Запеченный Хокку" loading="lazy" class="dish-img">
+                  <span class="dish-tag">Печь</span>
+                </div>
+                <div class="dish-content">
+                  <div class="dish-info-row">
+                    <h4 class="dish-title">Запеченный Хокку</h4>
+                    <span class="dish-price">485 ₽</span>
+                  </div>
+                  <p class="dish-desc">Запеченная шапочка из сыра моцарелла, снежный краб, соус унаги.</p>
+                  <button class="btn-add-cart" data-dish="baked-khokku">+ В корзину</button>
+                </div>
+              </div>
+
+              <!-- Dish 4 -->
+              <div class="dish-card" data-id="baked-midii" data-name="Запечённые мидии" data-price="490">
+                <div class="dish-media">
+                  <img src="./assets/menu/baked_midii.webp" alt="Запечённые мидии" loading="lazy" class="dish-img">
+                  <span class="dish-tag">Горячее</span>
+                </div>
+                <div class="dish-content">
+                  <div class="dish-info-row">
+                    <h4 class="dish-title">Запечённые мидии</h4>
+                    <span class="dish-price">490 ₽</span>
+                  </div>
+                  <p class="dish-desc">Крупные мидии киви под чесночно-сырным спайси соусом, кунжут.</p>
+                  <button class="btn-add-cart in-cart" data-dish="baked-midii">&#10003; В корзине (1)</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action footer -->
+            <div class="storefront-checkout-bar">
+              <div class="checkout-summary-text">
+                ИТОГО: <strong id="checkout-total-label">930 RUB</strong> &bull; Доставка: <strong id="checkout-delivery-label">150 RUB</strong>
+              </div>
+              <button class="btn btn-crimson btn-checkout-action" id="btn-submit-order">
+                <span>Отправить заказ на кухню (KDS)</span> &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 2: KDS KITCHEN SCREEN -->
+          <div class="station-tab-view" id="tab-kds">
+            <div class="kds-dashboard-bar">
+              <div class="kds-title">
+                <strong>ЦЕХ РОЛЛОВ &amp; СУШИ</strong> &bull; Сенсорный терминал повара
+              </div>
+              <div class="kds-stats-pills">
+                <span class="kds-pill active-pill">В работе: <strong id="kds-active-count">3</strong></span>
+                <span class="kds-pill ready-pill">Готово: <strong>14</strong></span>
+              </div>
+            </div>
+
+            <div class="kds-orders-container" id="kds-container">
+              <!-- Live order 106 (Dynamically submitted) -->
+              <div class="kds-card fresh-alert" id="kds-ticket-106">
+                <div class="kds-card-head">
+                  <div class="kds-id-group">
+                    <span class="kds-badge-new">НОВЫЙ ЗАКАЗ</span>
+                    <strong>Чек #106 [Доставка]</strong>
+                  </div>
+                  <span class="kds-timer-live" id="timer-106">00:42</span>
+                </div>
+                <div class="kds-items-list" id="kds-items-106">
+                  <div class="kds-item-row">&bull; 1x Бонита Чиз [Холодный цех]</div>
+                  <div class="kds-item-row">&bull; 1x Запечённые мидии [Печь 220°C]</div>
+                </div>
+                <div class="kds-card-footer">
+                  <button class="btn-kds-action btn-kds-start" id="btn-kds-toggle-106">В РАБОТУ</button>
+                </div>
+              </div>
+
+              <!-- Order 104 -->
+              <div class="kds-card warn-card">
+                <div class="kds-card-head">
+                  <strong>Чек #104 [Курьер]</strong>
+                  <span class="kds-timer-live timer-warn">08:15</span>
+                </div>
+                <div class="kds-items-list">
+                  <div class="kds-item-row">&bull; 1x Сет Самурай XXL (32 шт)</div>
+                  <div class="kds-item-row">&bull; 2x Соус Спайси 45г</div>
+                </div>
+                <div class="kds-card-footer">
+                  <button class="btn-kds-action btn-kds-ready">ГОТОВО К ВЫДАЧЕ</button>
+                </div>
+              </div>
+
+              <!-- Order 105 -->
+              <div class="kds-card">
+                <div class="kds-card-head">
+                  <strong>Чек #105 [Самовывоз]</strong>
+                  <span class="kds-timer-live">02:30</span>
+                </div>
+                <div class="kds-items-list">
+                  <div class="kds-item-row">&bull; 1x Калифорния с креветкой</div>
+                  <div class="kds-item-row">&bull; 1x Морс брусничный 0.5л</div>
+                </div>
+                <div class="kds-card-footer">
+                  <button class="btn-kds-action btn-kds-start">В РАБОТУ</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: THERMAL RECEIPT 1C -->
+          <div class="station-tab-view" id="tab-receipt">
+            <div class="receipt-preview-wrapper">
+              <div class="thermal-tape">
+                <div class="tape-header">
+                  <strong>СУШИ-БАР «PANDABAR»</strong><br>
+                  ООО «ПАНДА ФУДТЕХ» | ИНН 2221234567<br>
+                  г. Барнаул, пр-т Калинина, д. 116<br>
+                  тел: +7 (3852) 600-417<br>
+                  ========================================<br>
+                  <strong>КАССОВАЯ НАКЛАДНАЯ #106</strong><br>
+                  Дата: 18.09.2026 &bull; Смена: 1 &bull; Кассир: KDS-Auto<br>
+                  ========================================
+                </div>
+                <div class="tape-positions" id="receipt-positions">
+                  <div class="tape-row"><span>1. Бонита Чиз (1 шт)</span> <span>440.00</span></div>
+                  <div class="tape-row"><span>2. Запечённые мидии (1 шт)</span> <span>490.00</span></div>
+                  <div class="tape-row"><span>3. Доставка курьером</span> <span>150.00</span></div>
+                </div>
+                <div class="tape-divider">----------------------------------------</div>
+                <div class="tape-total-row">
+                  <span>ИТОГО К ОПЛАТЕ:</span>
+                  <span id="receipt-total-val">1 080.00 RUB</span>
+                </div>
+                <div class="tape-info">
+                  Оплата: КАРТА ОНЛАЙН (ЭКВАЙРИНГ)<br>
+                  Адрес: ул. Молодежная 15, кв. 42<br>
+                  Клиент: +7 (999) 456-78-90<br>
+                  Курьер: Авто-доставка (Терминал 2)
+                </div>
+                <div class="tape-barcode">||| |||| | |||||| || |||| |||</div>
+              </div>
+              <div class="receipt-actions">
+                <button class="btn btn-secondary" id="btn-print-receipt">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+                  Эмуляция печати термочека
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: COURIER SCREEN -->
+          <div class="station-tab-view" id="tab-courier">
+            <div class="courier-mobile-frame">
+              <div class="courier-phone-screen">
+                <div class="courier-status-head">
+                  <span class="courier-badge">Активный маршрут</span>
+                  <span class="courier-eta">ETA: 16 мин</span>
+                </div>
+                <div class="courier-order-details">
+                  <div class="c-order-id">Заказ #106 &bull; Оплачен</div>
+                  <div class="c-address">
+                    <strong>ул. Молодежная, д. 15</strong><br>
+                    подъезд 2, этаж 5, кв. 42 (домофон 42)
+                  </div>
+                  <div class="c-client">
+                    Клиент: Алексей (+7 999 456-78-90)
+                  </div>
+                </div>
+                <div class="courier-buttons-row">
+                  <button class="btn-c-action btn-c-phone" onclick="alert('Эмуляция звонка клиенту: +7 999 456-78-90')">Позвонить</button>
+                  <button class="btn-c-action btn-c-deliver" id="btn-courier-delivered">Вручено клиенту</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Feature cards under the interactive station -->
+        <div class="features-trio-grid chrome-reveal">
+          <div class="f-card">
+            <div class="f-num">01</div>
+            <h4 class="f-title">RBAC &amp; Безопасность</h4>
+            <p class="f-desc">
+              5 ролей доступа (Клиент, Повар, Курьер, Менеджер, Администратор). Исключены утечки IDOR и накрутка цен на клиенте.
+            </p>
+          </div>
+          <div class="f-card">
+            <div class="f-num">02</div>
+            <h4 class="f-title">Конечный автомат (FSM)</h4>
+            <p class="f-desc">
+              Строгая смена статусов (pending &rarr; cooking &rarr; ready &rarr; delivery) с защитой от рассинхронизации и повторных списаний.
+            </p>
+          </div>
+          <div class="f-card">
+            <div class="f-num">03</div>
+            <h4 class="f-title">Авто-печать чеков 1С</h4>
+            <p class="f-desc">
+              Интеграция с термопринтерами чеков и накладных. Кухня получает бумажный талон сразу в момент подтверждения оплаты.
+            </p>
+          </div>
+        </div>
+
+        <div class="pandabar-bottom-cta chrome-reveal">
+          <a href="https://t.me/g1ghtik?text=Здравствуйте!%20Хочу%20обсудить%20разработку%20системы%20доставки%20(кейс%20PandaBar)" target="_blank" rel="noopener noreferrer" class="btn btn-crimson btn-cta-wide">
+            Заказать разработку системы доставки для бизнеса &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OTHER PROJECTS SECTION -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-badge-header chrome-reveal">
+          <span class="badge-tag">ДРУГИЕ РЕШЕНИЯ // БОТЫ &amp; GAMEDEV</span>
+          <h2 class="section-headline">Коммерческие продукты и сервисы</h2>
+          <p class="section-lead">Асинхронные боты для бизнеса и интерактивные веб-приложения на чистом JavaScript.</p>
+        </div>
+
+        <div class="projects-duo-grid">
+          <!-- PROJECT 2: TELEGRAM BOT -->
+          <div class="project-card chrome-reveal">
+            <div class="p-card-header">
+              <span class="p-badge">Python 3.12 &bull; aiogram 3.x</span>
+              <h3 class="p-title">Telegram Business Suite — Робот 24/7</h3>
+              <p class="p-desc">
+                Многофункциональный коммерческий бот: электронный магазин с корзиной, авто-запись клиентов на слоты, расчет сметы IT и панель рассылок.
+              </p>
+            </div>
+
+            <!-- Mini phone simulator -->
+            <div class="mini-phone-box">
+              <div class="tg-keyboard-strip">
+                <button class="tg-k-btn active" data-scenario="shop">Магазин</button>
+                <button class="tg-k-btn" data-scenario="booking">Запись</button>
+                <button class="tg-k-btn" data-scenario="quote">Калькулятор</button>
+                <button class="tg-k-btn" data-scenario="admin">Админка</button>
+              </div>
+              <div class="tg-bubble-reply" id="tg-bubble-container">
+                <strong>Корзина заказа #104:</strong><br>
+                - Сет Самурай XXL (1 шт) &bull; 1 490 ₽<br>
+                - Морс брусничный (2 шт) &bull; 280 ₽<br>
+                Итого: <strong>1 770 ₽</strong> (Доставка: 0 ₽)<br>
+                <span class="c-accent">Статус: В обработке ботом</span>
+              </div>
+            </div>
+
+            <div class="p-card-footer">
+              <a href="https://t.me/g1ghtik?text=Здравствуйте!%20Хочу%20заказать%20Telegram-бота" target="_blank" rel="noopener noreferrer" class="btn btn-crimson">
+                Заказать бота в Telegram
+              </a>
+              <a href="https://github.com/G1ght25/developer-portfolio/tree/main/telegram-bot" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                Код на GitHub &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- PROJECT 3: ECHO SONAR -->
+          <div class="project-card chrome-reveal">
+            <div class="p-card-header">
+              <span class="p-badge">Canvas 2D &bull; Web Audio API</span>
+              <h3 class="p-title">Echo Sonar — Стелс-экшен на Canvas</h3>
+              <p class="p-desc">
+                Математический движок гидролокации: 60 FPS, отражения звуковых волн от препятствий, процедурный синтез звука и умные эхо-охотники.
+              </p>
+            </div>
+
+            <!-- Sonar interactive frame -->
+            <div class="sonar-mini-terminal">
+              <div class="sonar-top-badge">
+                <span>RADAR ENGINE ACTIVE</span>
+                <span class="pulse-red-dot"></span>
+              </div>
+              <div class="sonar-display-area" id="sonar-display-box">
+                <div class="radar-crosshair"></div>
+                <div class="sonar-sweep"></div>
+                <div class="sonar-launch-overlay" id="sonar-launch-overlay">
+                  <div class="s-title">ECHO SONAR</div>
+                  <div class="s-sub">24 Сектора Бездны</div>
+                  <button class="btn btn-crimson btn-sm" id="btn-start-sonar">Запустить игру</button>
+                </div>
+                <iframe id="sonar-iframe" class="sonar-frame" data-src="./games/echo-sonar/index.html"></iframe>
+              </div>
+              <div class="sonar-controls-bar">
+                <span>[Пробел] Эхо-волна &bull; [WASD] Курс</span>
+                <button class="btn-fs-sm" id="btn-sonar-fullscreen">На весь экран</button>
+              </div>
+            </div>
+
+            <div class="p-card-footer">
+              <a href="https://github.com/G1ght25/developer-portfolio/tree/main/games/echo-sonar" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                Код на GitHub &rarr;
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -97,495 +533,126 @@
     <!-- SKILLS SECTION -->
     <section id="skills" class="section">
       <div class="container">
-        <div class="section-header reveal-on-scroll">
-          <h2 class="section-title">Стек технологий и компетенции</h2>
-          <p class="section-subtitle">Проверенные инструменты для создания надежных серверных и клиентских продуктов</p>
+        <div class="section-badge-header chrome-reveal">
+          <span class="badge-tag">СТЕК // ТЕХНОЛОГИЧЕСКИЙ АРСЕНАЛ</span>
+          <h2 class="section-headline">Инструменты и стандарты кода</h2>
+          <p class="section-lead">Проверенный стек без лишних библиотек — чистый, масштабируемый и поддерживаемый код.</p>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
-            <div class="skill-icon-header">
-              <div class="skill-badge-icon cyan-icon">&lt;/&gt;</div>
-              <h3 class="skill-category">Frontend &amp; UI</h3>
-            </div>
-            <ul class="skill-list">
-              <li><span class="skill-tag">React 19</span></li>
-              <li><span class="skill-tag">TypeScript</span></li>
-              <li><span class="skill-tag">Tailwind CSS</span></li>
-              <li><span class="skill-tag">Vite</span></li>
-              <li><span class="skill-tag">HTML5 Canvas / Web Audio</span></li>
-              <li><span class="skill-tag">Mobile-First / Адаптив</span></li>
+
+        <div class="skills-quartet-grid">
+          <div class="skill-column chrome-reveal">
+            <div class="sc-header">Frontend &amp; UI</div>
+            <ul class="sc-list">
+              <li>React 19</li>
+              <li>TypeScript</li>
+              <li>Tailwind CSS</li>
+              <li>Vite</li>
+              <li>HTML5 Canvas 2D</li>
+              <li>Web Audio API</li>
             </ul>
           </div>
-
-          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
-            <div class="skill-icon-header">
-              <div class="skill-badge-icon blue-icon">&#9881;</div>
-              <h3 class="skill-category">Backend &amp; Bot API</h3>
-            </div>
-            <ul class="skill-list">
-              <li><span class="skill-tag">Python 3.12</span></li>
-              <li><span class="skill-tag">aiogram 3.x</span></li>
-              <li><span class="skill-tag">Node.js / Express</span></li>
-              <li><span class="skill-tag">FastAPI</span></li>
-              <li><span class="skill-tag">RESTful APIs / SSE</span></li>
-              <li><span class="skill-tag">Машина состояний (FSM)</span></li>
+          <div class="skill-column chrome-reveal">
+            <div class="sc-header">Backend &amp; Bot</div>
+            <ul class="sc-list">
+              <li>Python 3.12</li>
+              <li>aiogram 3.x</li>
+              <li>Node.js / Express</li>
+              <li>FastAPI</li>
+              <li>REST API / SSE</li>
+              <li>FSM Архитектура</li>
             </ul>
           </div>
-
-          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
-            <div class="skill-icon-header">
-              <div class="skill-badge-icon amber-icon">&#9907;</div>
-              <h3 class="skill-category">Базы данных &amp; Память</h3>
-            </div>
-            <ul class="skill-list">
-              <li><span class="skill-tag">PostgreSQL</span></li>
-              <li><span class="skill-tag">SQLite / aiosqlite</span></li>
-              <li><span class="skill-tag">Redis</span></li>
-              <li><span class="skill-tag">Транзакции &amp; Миграции</span></li>
-              <li><span class="skill-tag">Индексы &amp; Оптимизация</span></li>
-              <li><span class="skill-tag">Защита от утечек (IDOR)</span></li>
+          <div class="skill-column chrome-reveal">
+            <div class="sc-header">Базы данных</div>
+            <ul class="sc-list">
+              <li>PostgreSQL</li>
+              <li>SQLite / aiosqlite</li>
+              <li>Redis</li>
+              <li>ACID Транзакции</li>
+              <li>Оптимизация индексов</li>
+              <li>Защита от утечек</li>
             </ul>
           </div>
-
-          <div class="skill-card glass-card reveal-on-scroll reveal-stagger">
-            <div class="skill-icon-header">
-              <div class="skill-badge-icon green-icon">&#10004;</div>
-              <h3 class="skill-category">Архитектура &amp; Запуск</h3>
-            </div>
-            <ul class="skill-list">
-              <li><span class="skill-tag">RBAC (5 уровней прав)</span></li>
-              <li><span class="skill-tag">Docker &amp; Docker Compose</span></li>
-              <li><span class="skill-tag">Nginx / Reverse Proxy</span></li>
-              <li><span class="skill-tag">Linux / Bash Scripting</span></li>
-              <li><span class="skill-tag">Git / GitHub Pages / CI</span></li>
-              <li><span class="skill-tag">Безопасность API</span></li>
+          <div class="skill-column chrome-reveal">
+            <div class="sc-header">DevOps &amp; Запуск</div>
+            <ul class="sc-list">
+              <li>Docker &amp; Compose</li>
+              <li>Nginx Reverse Proxy</li>
+              <li>Linux / Bash</li>
+              <li>Git / GitHub Pages</li>
+              <li>Термопечать 1С</li>
+              <li>CI/CD пайплайны</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SHOWCASE / CASES SECTION -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section-header reveal-on-scroll">
-          <h2 class="section-title">Кейсы и выполненные решения</h2>
-          <p class="section-subtitle">Интерактивные шоукейсы реальных систем с живой демонстрацией прямо в браузере</p>
-        </div>
-
-        <div class="showcase-list">
-
-          <!-- CASE 1: PANDABAR -->
-          <article class="showcase-card glass-card reveal-on-scroll">
-            <div class="showcase-info">
-              <div class="project-meta">
-                <span class="project-badge badge-case">Кейс: Общепит и доставка</span>
-                <span class="project-year">2026</span>
-              </div>
-              <h3 class="project-title">PandaBar — Комплекс доставки еды и KDS-система</h3>
-              <p class="project-desc">
-                Масштабируемый комплекс для ресторанной сети: клиентская веб-витрина с динамической корзиной, интерактивный сенсорный экран повара кухни (KDS) и модуль печати чеков.
-              </p>
-              <div class="project-features">
-                <div class="feature-item">
-                  <strong>Бизнес-результат:</strong> Автономный приём заказов без 35% комиссий агрегаторам, передача чека на кухню за 1 секунду.
-                </div>
-                <div class="feature-item">
-                  <strong>KDS-интерфейс кухни:</strong> Контрастный экран с цветовой шкалой задержек, звуковыми уведомлениями и стоп-листом.
-                </div>
-                <div class="feature-item">
-                  <strong>Умная витрина:</strong> Прогресс бесплатной доставки от 1000 RUB, соусы, мобильная адаптация под смартфоны.
-                </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">React 19</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">Tailwind CSS</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">Express</span>
-                <span class="tag">KDS Экран</span>
-                <span class="tag">RBAC</span>
-              </div>
-              <div class="project-footer">
-                <a href="https://t.me/g1ghtik?text=Здравствуйте!%20Хочу%20обсудить%20проект%20типа%20PandaBar" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-tg-sm">
-                  Заказать похожий проект
-                </a>
-                <a href="https://github.com/G1ght25/developer-portfolio/tree/main/pandabar" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-                  Код на GitHub &rarr;
-                </a>
-              </div>
-            </div>
-
-            <div class="showcase-visual">
-              <div class="device-switcher glass-switcher">
-                <button class="switch-btn active" data-tab="showcase">Витрина</button>
-                <button class="switch-btn" data-tab="kds">KDS Кухня</button>
-                <button class="switch-btn" data-tab="receipt">Чек накладной</button>
-                <button class="switch-btn" data-tab="courier">Курьер</button>
-              </div>
-
-              <div class="laptop-mockup">
-                <div class="laptop-screen">
-                  <div class="screen-camera"></div>
-
-                  <!-- VIEW 1: Витрина -->
-                  <div class="screen-view active" id="view-showcase">
-                    <div class="mockup-header">
-                      <div class="mockup-brand">PandaBar <span>[Барнаул]</span></div>
-                      <div class="mockup-cart-badge">Корзина: 2 шт | 1 490 RUB</div>
-                    </div>
-                    <div class="delivery-progress">
-                      <span>До бесплатной доставки: 210 RUB</span>
-                      <div class="progress-track"><div class="progress-bar" style="width: 85%;"></div></div>
-                    </div>
-                    <div class="food-grid">
-                      <div class="food-card">
-                        <div class="food-img sushi-img1"></div>
-                        <div class="food-title">Сет Самурай XXL</div>
-                        <div class="food-price">1 490 RUB <span class="added-badge">В корзине (1)</span></div>
-                      </div>
-                      <div class="food-card">
-                        <div class="food-img sushi-img2"></div>
-                        <div class="food-title">Филадельфия Prime</div>
-                        <div class="food-price">475 RUB <button class="mini-add-btn">+</button></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- VIEW 2: KDS Кухня -->
-                  <div class="screen-view" id="view-kds">
-                    <div class="kds-header">
-                      <span>KDS: Цех Суши | 2 активных чека</span>
-                      <span class="kds-status-live">[СМЕНА ОНЛАЙН]</span>
-                    </div>
-                    <div class="kds-tickets">
-                      <div class="kds-ticket warn">
-                        <div class="ticket-head">
-                          <strong>Заказ #104 [Доставка]</strong>
-                          <span class="ticket-timer">08:15</span>
-                        </div>
-                        <ul class="ticket-items">
-                          <li>1x Сет Самурай XXL [Готовится]</li>
-                          <li>1x Запеченные мидии [В печи]</li>
-                          <li>2x Соус спайси [Собрано]</li>
-                        </ul>
-                        <button class="kds-btn ready">ГОТОВО</button>
-                      </div>
-                      <div class="kds-ticket fresh">
-                        <div class="ticket-head">
-                          <strong>Заказ #105 [Самовывоз]</strong>
-                          <span class="ticket-timer">02:40</span>
-                        </div>
-                        <ul class="ticket-items">
-                          <li>1x Филадельфия Prime</li>
-                          <li>2x Морс брусничный 0.5л</li>
-                        </ul>
-                        <button class="kds-btn start">В РАБОТУ</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- VIEW 3: Чек 1С -->
-                  <div class="screen-view" id="view-receipt">
-                    <div class="receipt-paper">
-                      <div class="receipt-header">
-                        <strong>ПАНДА ДОСТАВКА ГОТОВЫХ БЛЮД</strong><br>
-                        пр-т Калинина 116 | тел: 600-417<br>
-                        -----------------------------------<br>
-                        НАКЛАДНАЯ #104 от 17.09.2026<br>
-                        -----------------------------------
-                      </div>
-                      <div class="receipt-lines">
-                        <div>1. Сет Самурай XXL ......... 1 490 RUB</div>
-                        <div>2. Морс брусничный x2 ...... 280 RUB</div>
-                        <div>3. Соус Спайси ............. 45 RUB</div>
-                      </div>
-                      <div class="receipt-total">
-                        ИТОГО: 1 815 RUB<br>
-                        ОПЛАЧЕНО: КАРТОЙ ОНЛАЙН<br>
-                        Адрес: ул. Ленина, 45, кв. 18
-                      </div>
-                      <div class="receipt-barcode">|||| | | ||||| || |||||| |</div>
-                    </div>
-                  </div>
-
-                  <!-- VIEW 4: Курьер -->
-                  <div class="screen-view" id="view-courier">
-                    <div class="courier-card">
-                      <div class="courier-head">
-                        <span class="badge-route">Маршрут доставки</span>
-                        <span class="eta">14 мин</span>
-                      </div>
-                      <div class="courier-dest">
-                        <strong>Заказ #104 (1 815 RUB)</strong>
-                        <p>ул. Ленина, д. 45, под. 2, эт. 4, кв. 18</p>
-                        <p>Клиент: Елена (+7 999 123-45-67)</p>
-                      </div>
-                      <div class="courier-actions">
-                        <button class="courier-call">Вызов</button>
-                        <button class="courier-done">Вручено</button>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="laptop-base"></div>
-              </div>
-            </div>
-          </article>
-
-          <!-- CASE 2: TELEGRAM BOT -->
-          <article class="showcase-card glass-card reveal-on-scroll">
-            <div class="showcase-info">
-              <div class="project-meta">
-                <span class="project-badge badge-case">Кейс: Автоматизация бизнеса</span>
-                <span class="project-year">2026</span>
-              </div>
-              <h3 class="project-title">Telegram Business Suite — Бот для лидов и продаж 24/7</h3>
-              <p class="project-desc">
-                Асинхронный робот на aiogram 3.x с 4 готовыми коммерческими сценариями: электронный магазин с корзиной, онлайн-запись на слоты, расчет сметы и панель администратора.
-              </p>
-              <div class="project-features">
-                <div class="feature-item">
-                  <strong>Продажи и лидогенерация:</strong> Приём и расчёт заказов прямо в мессенджере без ухода клиента на сторонние сайты.
-                </div>
-                <div class="feature-item">
-                  <strong>Калькулятор сметы:</strong> Моментальный расчет стоимости услуг для лидов с авто-сбором контактов в CRM.
-                </div>
-                <div class="feature-item">
-                  <strong>Админ-панель:</strong> Статистика оборота за день, управление заказами и массовая рассылка по базе в 1 клик.
-                </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">Python 3.12</span>
-                <span class="tag">aiogram 3.x</span>
-                <span class="tag">aiosqlite</span>
-                <span class="tag">FSM</span>
-                <span class="tag">AsyncIO</span>
-                <span class="tag">Бот под ключ</span>
-              </div>
-              <div class="project-footer">
-                <a href="https://t.me/g1ghtik?text=Здравствуйте!%20Интересует%20разработка%20Telegram-бота" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-tg-sm">
-                  Заказать Telegram-бота
-                </a>
-                <a href="https://github.com/G1ght25/developer-portfolio/tree/main/telegram-bot" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-                  Код на GitHub &rarr;
-                </a>
-              </div>
-            </div>
-
-            <div class="showcase-visual">
-              <div class="phone-mockup">
-                <div class="phone-notch"><div class="dynamic-island"></div></div>
-                <div class="phone-screen">
-                  <div class="tg-header">
-                    <span class="tg-back">&lt;</span>
-                    <div class="tg-user">
-                      <div class="tg-avatar">PB</div>
-                      <div class="tg-meta">
-                        <div class="tg-name">Panda Assistant <span class="tg-badge">bot</span></div>
-                        <div class="tg-status">онлайн</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="tg-chat">
-                    <div class="tg-date">Сегодня</div>
-                    <div class="tg-msg bot-msg">
-                      Привет! Я демонстрационный бот IT-решений.<br><br>
-                      Выберите сценарий для интерактивного теста:
-                    </div>
-
-                    <div class="tg-keyboard">
-                      <button class="tg-key active" data-msg="shop">Доставка еды</button>
-                      <button class="tg-key" data-msg="booking">Онлайн-запись</button>
-                      <button class="tg-key" data-msg="quote">Расчет сметы</button>
-                      <button class="tg-key" data-msg="admin">Админ-панель</button>
-                    </div>
-
-                    <div class="tg-msg bot-msg reply-bubble" id="tg-reply-box">
-                      <strong>Корзина заказа #104:</strong><br>
-                      - Сет Самурай XXL (1 шт) - 1 490 RUB<br>
-                      - Морс брусничный (2 шт) - 280 RUB<br>
-                      -------------------<br>
-                      Итого: <strong>1 770 RUB</strong> (Доставка: 0 RUB)<br>
-                      Статус: <em>Ожидает подтверждения</em>
-                      <div class="tg-inline-action">
-                        <button class="tg-act-btn">Подтвердить</button>
-                        <button class="tg-act-btn cancel">Отмена</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="tg-input-bar">
-                    <span>[+]</span>
-                    <div class="tg-placeholder">Сообщение...</div>
-                    <span>[MIC]</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- CASE 3: ECHO SONAR -->
-          <article class="showcase-card glass-card reveal-on-scroll">
-            <div class="showcase-info">
-              <div class="project-meta">
-                <span class="project-badge badge-case">Интерактивный Web &amp; GameDev</span>
-                <span class="project-year">2026</span>
-              </div>
-              <h3 class="project-title">Echo Sonar — Стелс-экшен на Canvas 2D</h3>
-              <p class="project-desc">
-                Атмосферная браузерная игра с механикой эхолокации в полной темноте без внешних тяжелых движков: математика волновых отражений на Canvas 2D и процедурный Web Audio синтез.
-              </p>
-              <div class="project-features">
-                <div class="feature-item">
-                  <strong>Canvas 2D Engine:</strong> 60 FPS, физика импульсов, лучевая проверка препятствий и умные охотники.
-                </div>
-                <div class="feature-item">
-                  <strong>Web Audio API:</strong> Процедурная генерация звуков сонара и сирен без скачивания внешних аудиофайлов.
-                </div>
-                <div class="feature-item">
-                  <strong>Быстрый тест:</strong> Игра запускается прямо внутри терминала ниже в один клик.
-                </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">JavaScript</span>
-                <span class="tag">HTML5 Canvas</span>
-                <span class="tag">Web Audio API</span>
-                <span class="tag">Game Architecture</span>
-              </div>
-              <div class="project-footer">
-                <button class="btn btn-primary" id="btn-quick-play">
-                  Запустить в терминале &darr;
-                </button>
-                <a href="https://github.com/G1ght25/developer-portfolio/tree/main/games/echo-sonar" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-                  Код на GitHub &rarr;
-                </a>
-              </div>
-            </div>
-
-            <div class="showcase-visual">
-              <div class="radar-terminal">
-                <div class="radar-terminal-header">
-                  <div class="terminal-badge"><span class="pulse-dot"></span> CANVAS ENGINE ACTIVE</div>
-                  <div class="terminal-title">ECHO SONAR TERMINAL // 60 FPS</div>
-                  <div class="terminal-specs">WEB AUDIO API</div>
-                </div>
-
-                <div class="radar-screen-container" id="radar-container">
-                  <div class="radar-scan-grid">
-                    <div class="sonar-ring r1"></div>
-                    <div class="sonar-ring r2"></div>
-                    <div class="sonar-ring r3"></div>
-                    <div class="radar-sweep-beam"></div>
-                    <div class="blip player-probe"></div>
-                    <div class="blip crystal-target"></div>
-                    <div class="blip enemy-echo"></div>
-                  </div>
-
-                  <div class="radar-overlay">
-                    <div class="radar-title">ECHO SONAR</div>
-                    <div class="radar-sub">Deep Abyss Canvas Engine • 24 Сектора</div>
-                    <button class="btn btn-primary btn-launch-game" id="btn-play-game">
-                      Запустить гидролокатор прямо здесь
-                    </button>
-                  </div>
-
-                  <iframe id="game-frame" class="game-iframe" data-src="./games/echo-sonar/index.html"></iframe>
-                </div>
-
-                <div class="radar-controls-hint">
-                  <span class="hint-pill">[ Пробел / Клик ] Пуск сонара</span>
-                  <span class="hint-pill">[ WASD / Мышь ] Движение</span>
-                  <button class="btn-fs" id="btn-fullscreen-toggle">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
-                    На весь экран
-                  </button>
-                </div>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION -->
+    <!-- EXPERIENCE / APPROACH SECTION -->
     <section id="experience" class="section">
       <div class="container">
-        <div class="section-header reveal-on-scroll">
-          <h2 class="section-title">Подход к разработке и стандарты качества</h2>
-          <p class="section-subtitle">Что отличает мои проекты от шаблонов новичков</p>
+        <div class="section-badge-header chrome-reveal">
+          <span class="badge-tag">СТАНДАРТЫ КАЧЕСТВА // ПОДХОД</span>
+          <h2 class="section-headline">Как строится разработка</h2>
+          <p class="section-lead">Инженерный подход вместо поверхностной сборки по шаблонам.</p>
         </div>
 
-        <div class="experience-timeline">
-          <div class="timeline-item glass-card reveal-on-scroll reveal-stagger">
-            <div class="timeline-date">Архитектура и безопасность</div>
-            <div class="timeline-content">
-              <h4 class="timeline-title">Отказоустойчивость и защита данных бизнеса</h4>
-              <p class="timeline-desc">
-                Проектирование клиент-серверного взаимодействия с серверной валидацией всех входящих сумм и параметров, предотвращением IDOR и SQL-инъекций, разграничением доступа на основе RBAC и криптографическим хэшированием паролей.
-              </p>
-            </div>
+        <div class="approach-grid">
+          <div class="approach-item chrome-reveal">
+            <span class="approach-tag">01 / АРХИТЕКТУРА</span>
+            <h4 class="approach-title">Безопасность и серверная валидация</h4>
+            <p class="approach-text">
+              Все расчеты сумм, остатков и чеков происходят исключительно на сервере в рамках неделимых транзакций. Клиент не может подделать сумму заказа или статус оплаты.
+            </p>
           </div>
-
-          <div class="timeline-item glass-card reveal-on-scroll reveal-stagger">
-            <div class="timeline-date">Фронтенд и UX</div>
-            <div class="timeline-content">
-              <h4 class="timeline-title">Адаптивный и понятный интерфейс (Foolproof UX)</h4>
-              <p class="timeline-desc">
-                Создание интерфейсов с минимальным когнитивным сопротивлением: моментальная тактильная обратная связь, однозначные CTA-элементы, плавная анимация, читаемые шрифты и безупречная верстка на смартфонах от 360px до 4K.
-              </p>
-            </div>
+          <div class="approach-item chrome-reveal">
+            <span class="approach-tag">02 / UX &amp; МОБИЛЬНОСТЬ</span>
+            <h4 class="approach-title">Исключение ошибок персонала (Foolproof UX)</h4>
+            <p class="approach-text">
+              Интерфейсы кухни KDS и курьеров разрабатываются под быстрые нажатия на сенсорных экранах: крупные контрастные зоны клика, цветовые статусы задержек и звуковые сигналы.
+            </p>
           </div>
-
-          <div class="timeline-item glass-card reveal-on-scroll reveal-stagger">
-            <div class="timeline-date">Бэкенд и автоматизация</div>
-            <div class="timeline-content">
-              <h4 class="timeline-title">Асинхронные боты и микросервисы</h4>
-              <p class="timeline-desc">
-                Разработка масштабируемых ботов с поддержкой сотен одновременных диалогов благодаря пулу соединений SQLite/PostgreSQL, фоновым задачам и надежной машине состояний (FSM), не зависающей при сбоях сети.
-              </p>
-            </div>
+          <div class="approach-item chrome-reveal">
+            <span class="approach-tag">03 / НАДЕЖНОСТЬ</span>
+            <h4 class="approach-title">Отказоустойчивость 24/7</h4>
+            <p class="approach-text">
+              Автоматический перезапуск сервисов, кэширование локальных состояний при кратковременном отключении интернета и защита очередей заказов от дублирования.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- CONTACTS SECTION (100% TELEGRAM FOCUS) -->
-    <section id="contacts" class="section">
+    <section id="contacts" class="section contacts-section">
       <div class="container">
-        <div class="contact-card glass-card reveal-on-scroll">
-          <div class="contact-glow-aura"></div>
-          <div class="contact-header">
-            <div class="badge-status online-badge">
-              <span class="status-indicator"></span> На связи в Telegram • Отвечаю за 10–15 минут
-            </div>
-            <h2 class="contact-main-title">Готовы обсудить ваш проект?</h2>
-            <p class="contact-subtitle">
-              Напишите мне напрямую в Telegram — обсудим задачу, сориентирую по архитектуре, подберу стек и назову точные сроки и стоимость реализации.
-            </p>
+        <div class="contact-terminal-box chrome-reveal">
+          <div class="contact-badge-pill">
+            <span class="pulse-red-dot"></span> НА СВЯЗИ В TELEGRAM &bull; ОТВЕТ В ТЕЧЕНИЕ 10-15 МИНУТ
           </div>
+          <h2 class="contact-title">Готовы обсудить ваш проект?</h2>
+          <p class="contact-desc">
+            Напишите мне напрямую в Telegram. Разберем задачу, подберем правильный стек, сориентирую по срокам и стоимости реализации.
+          </p>
 
-          <div class="contact-action-grid">
-            <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="btn btn-tg-large">
-              <svg class="tg-svg-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <div class="contact-buttons-cluster">
+            <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="btn btn-crimson btn-tg-cta-main">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
               </svg>
               <span>Открыть диалог в Telegram (<strong>@g1ghtik</strong>)</span>
             </a>
 
-            <button class="btn btn-copy-tg" id="btn-copy-username" data-username="@g1ghtik" title="Скопировать ник в буфер">
+            <button class="btn btn-secondary btn-copy-username" id="btn-copy-tg" data-username="@g1ghtik">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
-              <span id="copy-btn-text">Скопировать @g1ghtik</span>
+              <span id="copy-tg-label">Скопировать @g1ghtik</span>
             </button>
           </div>
 
-          <div class="contact-direct-hint">
+          <div class="direct-link-hint">
             Прямая ссылка: <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer">t.me/g1ghtik</a>
           </div>
         </div>
@@ -593,14 +660,15 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-content">
-      <p>&copy; 2026 G1ght25. Все права защищены. Открытое портфолио проектов.</p>
-      <a href="https://github.com/G1ght25" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub: G1ght25</a>
+    <div class="container footer-row">
+      <span>&copy; 2026 G1ght25. Все права защищены.</span>
+      <a href="https://github.com/G1ght25" target="_blank" rel="noopener noreferrer" class="footer-gh">GitHub: G1ght25</a>
     </div>
   </footer>
 
-  <!-- Toast notification -->
+  <!-- Toast Notification -->
   <div id="toast-notify" class="toast-notify">Ник @g1ghtik скопирован в буфер!</div>
 
   <script src="app.js"></script>

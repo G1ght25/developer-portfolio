@@ -1,10 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- 1. Smooth Scroll for Navigation Links ---
-  const links = document.querySelectorAll('a[href^="#"]');
-  links.forEach(link => {
+  // ==========================================================================
+  // 1. GOOGLE CHROME STYLE SCROLL PROGRESS BAR
+  // ==========================================================================
+  const scrollProgressBar = document.getElementById('scroll-progress');
+  let ticking = false;
+
+  const updateScrollProgress = () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0) {
+      const progress = Math.min(Math.max(window.scrollY / totalHeight, 0), 1);
+      if (scrollProgressBar) {
+        scrollProgressBar.style.transform = `scaleX(${progress})`;
+      }
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateScrollProgress();
+
+  // ==========================================================================
+  // 2. GOOGLE CHROME PROMO REVEAL ANIMATIONS (IntersectionObserver)
+  // ==========================================================================
+  const revealElements = document.querySelectorAll('.chrome-reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.12
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('is-revealed'));
+  }
+
+  // ==========================================================================
+  // 3. SMOOTH NAVIGATION FOR ANCHOR LINKS
+  // ==========================================================================
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href');
-      if (targetId === '#' || targetId === '') return;
+      if (!targetId || targetId === '#') return;
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
@@ -16,219 +66,454 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 2. Scroll Reveal Animations (IntersectionObserver) ---
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
-  if ('IntersectionObserver' in window) {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -40px 0px',
-      threshold: 0.1
-    };
+  // ==========================================================================
+  // 4. TOAST NOTIFICATION HELPER
+  // ==========================================================================
+  const toastNotify = document.getElementById('toast-notify');
+  let toastTimer = null;
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
+  const showToast = (message, duration = 2800) => {
+    if (!toastNotify) return;
+    toastNotify.textContent = message;
+    toastNotify.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastNotify.classList.remove('show');
+    }, duration);
+  };
+
+  // ==========================================================================
+  // 5. PANDABAR INTERACTIVE WORKSTATION CONSOLE
+  // ==========================================================================
+  // Tab Switcher
+  const modePills = document.querySelectorAll('#station-nav .mode-pill');
+  const tabViews = document.querySelectorAll('.station-tab-view');
+
+  const switchPandaTab = (tabName) => {
+    modePills.forEach(pill => {
+      if (pill.getAttribute('data-tab') === tabName) {
+        pill.classList.add('active');
+      } else {
+        pill.classList.remove('active');
+      }
+    });
+
+    tabViews.forEach(view => {
+      if (view.id === `tab-${tabName}`) {
+        view.classList.add('active');
+      } else {
+        view.classList.remove('active');
+      }
+    });
+  };
+
+  modePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const tab = pill.getAttribute('data-tab');
+      if (tab) switchPandaTab(tab);
+    });
+  });
+
+  // Food Dishes Database & Cart State
+  const DISHES_DB = {
+    'california': { name: 'Калифорния с креветкой', price: 490, dept: 'Холодный цех' },
+    'bonita': { name: 'Бонита Чиз', price: 440, dept: 'Холодный цех' },
+    'baked-khokku': { name: 'Запеченный Хокку', price: 485, dept: 'Печь 220°C' },
+    'baked-midii': { name: 'Запечённые мидии', price: 490, dept: 'Печь 220°C' }
+  };
+
+  // Initial cart: 1 Bonita (440) + 1 Baked Midii (490) = 930
+  const cartState = {
+    'bonita': 1,
+    'baked-midii': 1
+  };
+
+  const FREE_DELIVERY_THRESHOLD = 1000;
+  const STANDARD_DELIVERY_FEE = 150;
+
+  // DOM elements for cart
+  const cartItemCountEl = document.getElementById('cart-item-count');
+  const cartTotalSumEl = document.getElementById('cart-total-sum');
+  const deliveryProgressFill = document.getElementById('delivery-progress-fill');
+  const deliveryProgressLabel = document.getElementById('delivery-progress-label');
+  const checkoutTotalLabel = document.getElementById('checkout-total-label');
+  const checkoutDeliveryLabel = document.getElementById('checkout-delivery-label');
+  const btnSubmitOrder = document.getElementById('btn-submit-order');
+
+  // Sync and render cart
+  const renderCart = () => {
+    let totalItems = 0;
+    let totalSum = 0;
+
+    for (const [id, count] of Object.entries(cartState)) {
+      if (count > 0 && DISHES_DB[id]) {
+        totalItems += count;
+        totalSum += count * DISHES_DB[id].price;
+      }
+    }
+
+    // Update Counts and sums
+    if (cartItemCountEl) cartItemCountEl.textContent = totalItems;
+    if (cartTotalSumEl) cartTotalSumEl.textContent = totalSum.toLocaleString('ru-RU');
+    if (checkoutTotalLabel) checkoutTotalLabel.textContent = `${totalSum.toLocaleString('ru-RU')} RUB`;
+
+    // Free delivery calculation
+    const isFreeDelivery = totalSum >= FREE_DELIVERY_THRESHOLD;
+    const deliveryFee = totalItems === 0 ? 0 : (isFreeDelivery ? 0 : STANDARD_DELIVERY_FEE);
+
+    if (checkoutDeliveryLabel) {
+      checkoutDeliveryLabel.textContent = isFreeDelivery ? '0 RUB (Бесплатно)' : `${deliveryFee} RUB`;
+    }
+
+    const progressPct = Math.min(100, Math.round((totalSum / FREE_DELIVERY_THRESHOLD) * 100));
+    if (deliveryProgressFill) {
+      deliveryProgressFill.style.width = `${progressPct}%`;
+      deliveryProgressFill.style.backgroundColor = isFreeDelivery ? '#10b981' : '#e11d48';
+    }
+
+    if (deliveryProgressLabel) {
+      if (isFreeDelivery) {
+        deliveryProgressLabel.innerHTML = '<span style="color:#34d399; font-weight:700;">Бесплатная доставка активирована!</span>';
+      } else {
+        const diff = FREE_DELIVERY_THRESHOLD - totalSum;
+        deliveryProgressLabel.innerHTML = `До бесплатной доставки осталось: <strong>${diff} RUB</strong>`;
+      }
+    }
+
+    // Update individual dish buttons
+    document.querySelectorAll('.btn-add-cart').forEach(btn => {
+      const dishId = btn.getAttribute('data-dish');
+      const count = cartState[dishId] || 0;
+      if (count > 0) {
+        btn.classList.add('in-cart');
+        btn.innerHTML = `&#10003; В корзине (${count})`;
+      } else {
+        btn.classList.remove('in-cart');
+        btn.innerHTML = '+ В корзину';
+      }
+    });
+
+    // Update 1C Receipt
+    renderThermalReceipt(totalSum, deliveryFee);
+  };
+
+  // Add to cart click event
+  document.querySelectorAll('.btn-add-cart').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const dishId = btn.getAttribute('data-dish');
+      if (!dishId || !DISHES_DB[dishId]) return;
+
+      const currentCount = cartState[dishId] || 0;
+      // Cycle: 0 -> 1 -> 2 -> 3 -> 0 (or increment up to 3)
+      if (currentCount >= 3) {
+        delete cartState[dishId];
+        showToast(`Позиция «${DISHES_DB[dishId].name}» удалена из корзины`);
+      } else {
+        cartState[dishId] = currentCount + 1;
+        showToast(`«${DISHES_DB[dishId].name}» добавлено (${cartState[dishId]} шт.)`);
+      }
+
+      renderCart();
+    });
+  });
+
+  // Render 1C Thermal Receipt
+  const renderThermalReceipt = (itemsSum, deliveryFee) => {
+    const receiptPositions = document.getElementById('receipt-positions');
+    const receiptTotalVal = document.getElementById('receipt-total-val');
+    if (!receiptPositions) return;
+
+    let rowsHtml = '';
+    let idx = 1;
+
+    for (const [id, count] of Object.entries(cartState)) {
+      if (count > 0 && DISHES_DB[id]) {
+        const item = DISHES_DB[id];
+        const lineTotal = (item.price * count).toFixed(2);
+        rowsHtml += `<div class="tape-row"><span>${idx}. ${item.name} (${count} шт)</span> <span>${lineTotal}</span></div>`;
+        idx++;
+      }
+    }
+
+    if (deliveryFee > 0) {
+      rowsHtml += `<div class="tape-row"><span>${idx}. Доставка курьером</span> <span>${deliveryFee.toFixed(2)}</span></div>`;
+    } else if (itemsSum > 0) {
+      rowsHtml += `<div class="tape-row"><span>${idx}. Доставка курьером (Акция)</span> <span>0.00</span></div>`;
+    }
+
+    receiptPositions.innerHTML = rowsHtml || '<div class="tape-row"><span>Корзина пуста</span><span>0.00</span></div>';
+
+    const grandTotal = (itemsSum + deliveryFee).toFixed(2);
+    if (receiptTotalVal) {
+      receiptTotalVal.textContent = `${grandTotal} RUB`;
+    }
+  };
+
+  // KDS Live Timer State
+  let kdsSeconds = 42;
+  let kdsInterval = null;
+  const timerEl = document.getElementById('timer-106');
+
+  const startKdsTimer = () => {
+    clearInterval(kdsInterval);
+    kdsInterval = setInterval(() => {
+      kdsSeconds++;
+      const mins = String(Math.floor(kdsSeconds / 60)).padStart(2, '0');
+      const secs = String(kdsSeconds % 60).padStart(2, '0');
+      if (timerEl) timerEl.textContent = `${mins}:${secs}`;
+    }, 1000);
+  };
+
+  startKdsTimer();
+
+  // Submit Order from Storefront to KDS
+  if (btnSubmitOrder) {
+    btnSubmitOrder.addEventListener('click', () => {
+      // Sync items to KDS ticket
+      const kdsItemsEl = document.getElementById('kds-items-106');
+      if (kdsItemsEl) {
+        let itemsHtml = '';
+        for (const [id, count] of Object.entries(cartState)) {
+          if (count > 0 && DISHES_DB[id]) {
+            const item = DISHES_DB[id];
+            itemsHtml += `<div class="kds-item-row">&bull; ${count}x ${item.name} [${item.dept}]</div>`;
+          }
         }
-      });
-    }, observerOptions);
+        if (!itemsHtml) {
+          itemsHtml = '<div class="kds-item-row">&bull; 1x Бонита Чиз [Холодный цех]</div><div class="kds-item-row">&bull; 1x Запечённые мидии [Печь 220°C]</div>';
+        }
+        kdsItemsEl.innerHTML = itemsHtml;
+      }
 
-    revealElements.forEach(el => revealObserver.observe(el));
-  } else {
-    // Fallback if IntersectionObserver is not supported
-    revealElements.forEach(el => el.classList.add('is-revealed'));
+      // Reset ticket timer to 00:01
+      kdsSeconds = 1;
+      if (timerEl) timerEl.textContent = '00:01';
+      startKdsTimer();
+
+      // Switch to KDS tab
+      switchPandaTab('kds');
+
+      // Highlight KDS ticket
+      const ticket106 = document.getElementById('kds-ticket-106');
+      if (ticket106) {
+        ticket106.classList.remove('fresh-alert');
+        void ticket106.offsetWidth; // trigger reflow
+        ticket106.classList.add('fresh-alert');
+      }
+
+      showToast('Заказ #106 передан в KDS кухни за 0.8 сек!');
+    });
   }
 
-  // --- 3. Telegram Username Copy to Clipboard with Toast ---
-  const btnCopy = document.getElementById('btn-copy-username');
-  const copyBtnText = document.getElementById('copy-btn-text');
-  const toastNotify = document.getElementById('toast-notify');
-  let toastTimeout = null;
+  // KDS Action Toggle Button
+  const btnKdsToggle = document.getElementById('btn-kds-toggle-106');
+  let kdsStatusStep = 0; // 0: В РАБОТУ, 1: ГОТОВИТСЯ (ШЕФ), 2: ГОТОВО К ВЫДАЧЕ
 
-  if (btnCopy) {
-    btnCopy.addEventListener('click', () => {
-      const username = btnCopy.getAttribute('data-username') || '@g1ghtik';
-      
-      const copySuccess = () => {
-        if (copyBtnText) copyBtnText.textContent = 'Скопировано!';
-        btnCopy.classList.add('copied');
+  if (btnKdsToggle) {
+    btnKdsToggle.addEventListener('click', () => {
+      kdsStatusStep = (kdsStatusStep + 1) % 3;
 
-        if (toastNotify) {
-          toastNotify.textContent = `Ник ${username} скопирован в буфер!`;
-          toastNotify.classList.add('show');
-          clearTimeout(toastTimeout);
-          toastTimeout = setTimeout(() => {
-            toastNotify.classList.remove('show');
-          }, 2800);
-        }
-
-        setTimeout(() => {
-          if (copyBtnText) copyBtnText.textContent = `Скопировать ${username}`;
-          btnCopy.classList.remove('copied');
-        }, 2200);
-      };
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(username).then(copySuccess).catch(() => {
-          fallbackCopy(username, copySuccess);
-        });
+      if (kdsStatusStep === 1) {
+        btnKdsToggle.textContent = 'ГОТОВИТСЯ (ШЕФ)';
+        btnKdsToggle.className = 'btn-kds-action';
+        btnKdsToggle.style.background = '#f59e0b';
+        btnKdsToggle.style.color = '#000';
+        showToast('Чек #106: Повар подтвердил начало готовки');
+      } else if (kdsStatusStep === 2) {
+        btnKdsToggle.textContent = 'ГОТОВО К ВЫДАЧЕ';
+        btnKdsToggle.className = 'btn-kds-action btn-kds-ready';
+        btnKdsToggle.style.background = '';
+        btnKdsToggle.style.color = '';
+        clearInterval(kdsInterval);
+        showToast('Чек #106 собран и упакован! Передается курьеру.');
       } else {
-        fallbackCopy(username, copySuccess);
+        btnKdsToggle.textContent = 'В РАБОТУ';
+        btnKdsToggle.className = 'btn-kds-action btn-kds-start';
+        btnKdsToggle.style.background = '';
+        btnKdsToggle.style.color = '';
+        startKdsTimer();
       }
     });
   }
 
-  function fallbackCopy(text, callback) {
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
+  // 1C Receipt Print Button Simulation
+  const btnPrintReceipt = document.getElementById('btn-print-receipt');
+  if (btnPrintReceipt) {
+    btnPrintReceipt.addEventListener('click', () => {
+      const tape = document.querySelector('.thermal-tape');
+      if (tape) {
+        tape.style.transform = 'scale(0.98)';
+        tape.style.boxShadow = '0 0 20px rgba(225, 29, 72, 0.4)';
+        setTimeout(() => {
+          tape.style.transform = '';
+          tape.style.boxShadow = '';
+        }, 400);
+      }
+      showToast('Эмуляция: Накладная #106 напечатана на ленте 80мм (ESC/POS)');
+    });
+  }
+
+  // Courier Delivered Button
+  const btnCourierDelivered = document.getElementById('btn-courier-delivered');
+  if (btnCourierDelivered) {
+    btnCourierDelivered.addEventListener('click', () => {
+      btnCourierDelivered.textContent = '✓ Доставлено клиенту';
+      btnCourierDelivered.style.background = '#10b981';
+      btnCourierDelivered.style.color = '#fff';
+      const badge = document.querySelector('.courier-badge');
+      if (badge) {
+        badge.textContent = 'Выполнено';
+        badge.style.background = 'rgba(16, 185, 129, 0.2)';
+        badge.style.color = '#34d399';
+      }
+      showToast('Заказ #106 успешно завершен и отмечен в базе!');
+    });
+  }
+
+  // Initial cart calculation
+  renderCart();
+
+  // ==========================================================================
+  // 6. TELEGRAM BOT SIMULATOR
+  // ==========================================================================
+  const tgScenarioButtons = document.querySelectorAll('.tg-k-btn');
+  const tgBubbleContainer = document.getElementById('tg-bubble-container');
+
+  const TG_SCENARIOS = {
+    shop: `<strong>Корзина заказа #104:</strong><br>
+           - Сет Самурай XXL (1 шт) &bull; 1 490 ₽<br>
+           - Морс брусничный (2 шт) &bull; 280 ₽<br>
+           ------------------------------------<br>
+           Итого: <strong>1 770 ₽</strong> (Доставка: 0 ₽)<br>
+           <span class="c-accent">Статус: В обработке ботом</span>
+           <div style="margin-top:10px; display:flex; gap:8px;">
+             <span style="background:rgba(225,29,72,0.2); border:1px solid #e11d48; color:#fff; padding:3px 10px; border-radius:6px; font-size:0.75rem;">Оплатить картой</span>
+             <span style="background:rgba(255,255,255,0.06); color:#a1a1aa; padding:3px 10px; border-radius:6px; font-size:0.75rem;">Изменить</span>
+           </div>`,
+
+    booking: `<strong>Бронирование слота:</strong><br>
+              Услуга: <em>Архитектурный аудит и оценка проекта</em><br>
+              Дата: <strong>Сегодня / Ближайший слот</strong><br>
+              Время: <strong>15:30 (МСК)</strong><br>
+              Слот временно зарезервирован.<br>
+              <div style="margin-top:10px; display:flex; gap:8px;">
+                <span style="background:rgba(16,185,129,0.2); border:1px solid #10b981; color:#34d399; padding:3px 10px; border-radius:6px; font-size:0.75rem;">Подтвердить слот</span>
+                <span style="background:rgba(255,255,255,0.06); color:#a1a1aa; padding:3px 10px; border-radius:6px; font-size:0.75rem;">Выбрать другой день</span>
+              </div>`,
+
+    quote: `<strong>Калькулятор сметы IT:</strong><br>
+            - Продукт: <em>Web-витрина + KDS + Telegram-бот</em><br>
+            - Стек: React 19, Python aiogram 3.x, SQLite<br>
+            - Срок реализации: <strong>14-21 день</strong><br>
+            - Оценка трудоемкости: <strong>80-110 часов</strong><br>
+            <div style="margin-top:10px;">
+              <a href="https://t.me/g1ghtik?text=Здравствуйте!%20Хочу%20получить%20смету%20на%20разработку" target="_blank" rel="noopener noreferrer" style="color:#e11d48; text-decoration:none; font-weight:700; font-size:0.82rem;">
+                Получить точный расчет в Telegram (@g1ghtik) &rarr;
+              </a>
+            </div>`,
+
+    admin: `<strong>Панель администратора:</strong><br>
+            - Пользователей в боте: <strong>1 420 чел.</strong><br>
+            - Оформлено заказов за сегодня: <strong>38 шт.</strong><br>
+            - Дневная выручка: <strong>54 800 RUB</strong><br>
+            - Нагрузка CPU / RAM: <strong>12% / 180MB</strong><br>
+            <div style="margin-top:10px; display:flex; gap:8px;">
+              <span style="background:rgba(255,255,255,0.06); color:#fff; padding:3px 10px; border-radius:6px; font-size:0.75rem;">Экспорт CSV</span>
+              <span style="background:rgba(225,29,72,0.2); border:1px solid #e11d48; color:#fff; padding:3px 10px; border-radius:6px; font-size:0.75rem;">Рассылка</span>
+            </div>`
+  };
+
+  tgScenarioButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tgScenarioButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const scenario = btn.getAttribute('data-scenario');
+      if (tgBubbleContainer && TG_SCENARIOS[scenario]) {
+        tgBubbleContainer.innerHTML = TG_SCENARIOS[scenario];
+      }
+    });
+  });
+
+  // ==========================================================================
+  // 7. ECHO SONAR GAME LAUNCHER
+  // ==========================================================================
+  const btnStartSonar = document.getElementById('btn-start-sonar');
+  const sonarOverlay = document.getElementById('sonar-launch-overlay');
+  const sonarIframe = document.getElementById('sonar-iframe');
+  const btnSonarFullscreen = document.getElementById('btn-sonar-fullscreen');
+
+  const launchEchoSonar = () => {
+    if (sonarOverlay) sonarOverlay.style.display = 'none';
+    if (sonarIframe) {
+      if (!sonarIframe.src || sonarIframe.src === 'about:blank' || !sonarIframe.classList.contains('active')) {
+        sonarIframe.src = sonarIframe.getAttribute('data-src');
+        sonarIframe.classList.add('active');
+      }
+    }
+  };
+
+  if (btnStartSonar) btnStartSonar.addEventListener('click', launchEchoSonar);
+
+  if (btnSonarFullscreen && sonarIframe) {
+    btnSonarFullscreen.addEventListener('click', () => {
+      launchEchoSonar();
+      if (sonarIframe.requestFullscreen) {
+        sonarIframe.requestFullscreen();
+      } else if (sonarIframe.webkitRequestFullscreen) {
+        sonarIframe.webkitRequestFullscreen();
+      } else if (sonarIframe.msRequestFullscreen) {
+        sonarIframe.msRequestFullscreen();
+      }
+    });
+  }
+
+  // ==========================================================================
+  // 8. TELEGRAM USERNAME COPY WITH TOAST
+  // ==========================================================================
+  const btnCopyTg = document.getElementById('btn-copy-tg');
+  const copyTgLabel = document.getElementById('copy-tg-label');
+
+  if (btnCopyTg) {
+    btnCopyTg.addEventListener('click', () => {
+      const username = btnCopyTg.getAttribute('data-username') || '@g1ghtik';
+
+      const handleSuccess = () => {
+        if (copyTgLabel) copyTgLabel.textContent = 'Скопировано!';
+        btnCopyTg.classList.add('copied');
+        showToast(`Ник ${username} скопирован в буфер обмена!`);
+
+        setTimeout(() => {
+          if (copyTgLabel) copyTgLabel.textContent = `Скопировать ${username}`;
+          btnCopyTg.classList.remove('copied');
+        }, 2500);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(username).then(handleSuccess).catch(() => {
+          fallbackClipboard(username, handleSuccess);
+        });
+      } else {
+        fallbackClipboard(username, handleSuccess);
+      }
+    });
+  }
+
+  const fallbackClipboard = (text, callback) => {
+    const el = document.createElement('textarea');
+    el.value = text;
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.select();
     try {
       document.execCommand('copy');
       if (callback) callback();
     } catch (err) {
-      console.warn('Copy failed', err);
+      console.warn('Fallback copy failed', err);
     }
-    document.body.removeChild(textarea);
-  }
-
-  // --- 4. PandaBar Tab Switcher ---
-  const switchButtons = document.querySelectorAll('.switch-btn');
-  const switchTab = (tabName) => {
-    switchButtons.forEach(b => {
-      if (b.getAttribute('data-tab') === tabName) {
-        b.classList.add('active');
-      } else {
-        b.classList.remove('active');
-      }
-    });
-
-    document.querySelectorAll('.screen-view').forEach(view => {
-      view.classList.remove('active');
-    });
-    const activeView = document.getElementById(`view-${tabName}`);
-    if (activeView) activeView.classList.add('active');
+    document.body.removeChild(el);
   };
 
-  switchButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tabName = btn.getAttribute('data-tab');
-      switchTab(tabName);
-    });
-  });
-
-  // External trigger for tab switcher
-  const switchTriggers = document.querySelectorAll('.switch-tab-trigger');
-  switchTriggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const tabName = trigger.getAttribute('data-tab') || 'showcase';
-      switchTab(tabName);
-      const laptopMockup = document.querySelector('.laptop-mockup');
-      if (laptopMockup) {
-        laptopMockup.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    });
-  });
-
-  // --- 5. Telegram Bot Mockup Simulator ---
-  const tgKeys = document.querySelectorAll('.tg-key');
-  const tgReplyBox = document.getElementById('tg-reply-box');
-
-  const TG_REPLIES = {
-    shop: `<strong>Корзина заказа #104:</strong><br>
-           - Сет Самурай XXL (1 шт) — 1 490 RUB<br>
-           - Морс брусничный (2 шт) — 280 RUB<br>
-           -------------------<br>
-           Итого: <strong>1 770 RUB</strong> (Доставка: 0 RUB)<br>
-           Статус: <em>Ожидает подтверждения</em>
-           <div class="tg-inline-action">
-             <button class="tg-act-btn">Подтвердить</button>
-             <button class="tg-act-btn cancel">Отмена</button>
-           </div>`,
-    booking: `<strong>Бронирование услуги:</strong><br>
-              Услуга: <em>Архитектурный аудит проекта</em><br>
-              Дата: <strong>Пятница, 18 сентября</strong><br>
-              Время: <strong>15:30 (МСК)</strong><br>
-              Слот временно зарезервирован.<br>
-              <div class="tg-inline-action">
-                <button class="tg-act-btn">Забронировать</button>
-                <button class="tg-act-btn cancel">Выбрать время</button>
-              </div>`,
-    quote: `<strong>Калькулятор сметы IT:</strong><br>
-            - Тип: Web-сервис + Telegram Bot + KDS<br>
-            - Срок: 2-3 недели<br>
-            - Стек: React 19 / Python / aiosqlite<br>
-            -------------------<br>
-            Оценка трудоемкости: <strong>80-110 часов</strong>
-            <div class="tg-inline-action">
-              <button class="tg-act-btn">Скачать КП</button>
-              <a href="https://t.me/g1ghtik" target="_blank" rel="noopener noreferrer" class="tg-act-btn" style="text-decoration:none; display:inline-block;">Связаться</a>
-            </div>`,
-    admin: `<strong>Панель администратора:</strong><br>
-            Пользователей в базе: <strong>1 420 чел.</strong><br>
-            Активных чеков: <strong>38 шт.</strong><br>
-            Выручка за сегодня: <strong>54 800 RUB</strong>
-            <div class="tg-inline-action">
-              <button class="tg-act-btn">Рассылка</button>
-              <button class="tg-act-btn">Экспорт</button>
-            </div>`
-  };
-
-  tgKeys.forEach(key => {
-    key.addEventListener('click', () => {
-      tgKeys.forEach(k => k.classList.remove('active'));
-      key.classList.add('active');
-
-      const msgType = key.getAttribute('data-msg');
-      if (tgReplyBox && TG_REPLIES[msgType]) {
-        tgReplyBox.innerHTML = TG_REPLIES[msgType];
-      }
-    });
-  });
-
-  // --- 6. Echo Sonar Game Launch & Fullscreen ---
-  const btnPlay = document.getElementById('btn-play-game');
-  const btnQuickPlay = document.getElementById('btn-quick-play');
-  const radarOverlay = document.querySelector('.radar-overlay');
-  const gameFrame = document.getElementById('game-frame');
-  const btnFs = document.getElementById('btn-fullscreen-toggle');
-
-  const launchGame = () => {
-    if (radarOverlay) radarOverlay.classList.add('hidden');
-    if (gameFrame) {
-      if (!gameFrame.src || gameFrame.src === 'about:blank' || !gameFrame.classList.contains('active')) {
-        gameFrame.src = gameFrame.getAttribute('data-src');
-        gameFrame.classList.add('active');
-      }
-    }
-  };
-
-  if (btnPlay) btnPlay.addEventListener('click', launchGame);
-  if (btnQuickPlay) {
-    btnQuickPlay.addEventListener('click', () => {
-      launchGame();
-      const terminal = document.querySelector('.radar-terminal');
-      if (terminal) {
-        terminal.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    });
-  }
-
-  if (btnFs && gameFrame) {
-    btnFs.addEventListener('click', () => {
-      launchGame();
-      if (gameFrame.requestFullscreen) {
-        gameFrame.requestFullscreen();
-      } else if (gameFrame.webkitRequestFullscreen) {
-        gameFrame.webkitRequestFullscreen();
-      } else if (gameFrame.msRequestFullscreen) {
-        gameFrame.msRequestFullscreen();
-      }
-    });
-  }
-
-  console.log('Portfolio initialized successfully. Built for @g1ghtik.');
+  console.log('Portfolio engine initialized successfully. Commercial contact: @g1ghtik');
 });
