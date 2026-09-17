@@ -423,6 +423,13 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`
   };
 
+  // Set phone status bar clock to live local time
+  const phoneTimeEl = document.querySelector('.phone-time');
+  if (phoneTimeEl) {
+    const now = new Date();
+    phoneTimeEl.textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  }
+
   tgScenarioButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       tgScenarioButtons.forEach(b => b.classList.remove('active'));
@@ -430,7 +437,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const scenario = btn.getAttribute('data-scenario');
       if (tgBubbleContainer && TG_SCENARIOS[scenario]) {
-        tgBubbleContainer.innerHTML = TG_SCENARIOS[scenario];
+        tgBubbleContainer.style.opacity = '0';
+        tgBubbleContainer.style.transform = 'translateY(4px)';
+        setTimeout(() => {
+          tgBubbleContainer.innerHTML = TG_SCENARIOS[scenario];
+          tgBubbleContainer.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+          tgBubbleContainer.style.opacity = '1';
+          tgBubbleContainer.style.transform = 'translateY(0)';
+        }, 60);
+
+        const timeEl = document.querySelector('.tg-msg-time');
+        if (timeEl) {
+          const now = new Date();
+          timeEl.textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        }
       }
     });
   });

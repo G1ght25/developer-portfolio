@@ -441,6 +441,106 @@ body {
   line-height: 1.4;
 }
 
+/* LAPTOP MOCKUP ENCLOSURE (MacBook Pro Space Black Style) */
+.laptop-mockup-wrapper {
+  max-width: 1140px;
+  margin: 0 auto 40px;
+  position: relative;
+  perspective: 1200px;
+}
+
+.laptop-lid {
+  background: #141419;
+  border-radius: 20px 20px 4px 4px;
+  padding: 14px 14px 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    0 -4px 20px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.laptop-bezel {
+  background: #09090b;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  border: 1px solid #1c1c24;
+  border-bottom: none;
+}
+
+.laptop-camera-bar {
+  height: 20px;
+  background: #09090b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.laptop-camera-lens {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000;
+  border: 1px solid #2d2d38;
+  box-shadow: inset 0 0 3px #38bdf8;
+  display: inline-block;
+}
+
+.laptop-camera-led {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 4px #10b981;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.laptop-screen-content {
+  background: var(--bg-surface);
+}
+
+.laptop-screen-content .station-console {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.laptop-base-chassis {
+  height: 22px;
+  background: linear-gradient(180deg, #24242e 0%, #16161c 55%, #0e0e13 100%);
+  border-radius: 0 0 16px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: calc(100% + 36px);
+  margin-left: -18px;
+  box-shadow: 
+    0 25px 50px -10px rgba(0, 0, 0, 0.95),
+    0 10px 25px -5px rgba(225, 29, 72, 0.12);
+}
+
+.laptop-hinge-notch {
+  width: 100px;
+  height: 7px;
+  background: #09090c;
+  border-radius: 0 0 8px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.laptop-shadow-reflection {
+  height: 20px;
+  width: 90%;
+  margin: 0 auto;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, transparent 70%);
+  filter: blur(8px);
+}
+
 /* PANDABAR WORKSTATION CONSOLE */
 .station-console {
   background: var(--bg-surface);
@@ -1105,47 +1205,336 @@ body {
   margin-bottom: 20px;
 }
 
-.mini-phone-box {
-  background: #0d0d10;
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 16px;
+/* SMARTPHONE TELEGRAM SIMULATOR */
+.phone-mockup-wrapper {
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
   flex: 1;
 }
 
-.tg-keyboard-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.phone-device {
+  width: 100%;
+  max-width: 340px;
+  background: #0e1217;
+  border: 7px solid #202028;
+  border-radius: 38px;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.phone-notch-area {
+  background: #0e1217;
+  padding-top: 8px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.phone-dynamic-island {
+  width: 84px;
+  height: 20px;
+  background: #000;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+.phone-island-camera {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0b1120;
+  border: 1px solid #1e293b;
+  box-shadow: inset 0 0 2px #38bdf8;
+}
+
+.phone-status-bar {
+  padding: 4px 18px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  background: #0e1217;
+}
+
+.phone-status-icons {
+  display: flex;
+  align-items: center;
   gap: 6px;
-  margin-bottom: 14px;
+  color: var(--text-silver);
+}
+
+.phone-icon-net {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* TELEGRAM HEADER */
+.tg-app-header {
+  background: #171d25;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tg-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tg-back-arrow {
+  font-size: 1.4rem;
+  color: #e11d48;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tg-avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e11d48 0%, #9f1239 100%);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(225, 29, 72, 0.4);
+}
+
+.tg-avatar-online {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #171d25;
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+}
+
+.tg-header-info {
+  text-align: left;
+}
+
+.tg-bot-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.tg-badge-bot {
+  background: rgba(225, 29, 72, 0.2);
+  color: #f43f5e;
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.tg-bot-status {
+  font-size: 0.68rem;
+  color: #34d399;
+  line-height: 1.2;
+}
+
+.tg-header-right {
+  color: var(--text-zinc);
+  font-size: 1.1rem;
+}
+
+/* TELEGRAM CHAT CANVAS */
+.tg-chat-canvas {
+  background: #0d1117;
+  padding: 14px 12px;
+  min-height: 230px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.tg-date-divider {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.tg-date-divider span {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-silver);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+
+.tg-msg-bubble {
+  background: #18222d;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px 14px 14px 4px;
+  padding: 12px 14px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.tg-bubble-content {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.tg-bubble-content strong {
+  color: #fff;
+}
+
+.tg-inline-action-row {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tg-inline-btn {
+  background: #233040;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tg-inline-btn:hover {
+  background: #2c3c50;
+}
+
+.tg-inline-btn.primary {
+  background: rgba(225, 29, 72, 0.25);
+  border-color: #e11d48;
+  color: #ff4d6d;
+}
+
+.tg-msg-meta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.tg-read-status {
+  color: #38bdf8;
+}
+
+/* TELEGRAM REPLY KEYBOARD */
+.tg-reply-keyboard-panel {
+  background: #13171d;
+  padding: 8px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tg-keyboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
 }
 
 .tg-k-btn {
-  background: #1c1c22;
-  border: 1px solid var(--border-subtle);
+  background: #1e242e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   color: #fff;
-  padding: 6px;
-  border-radius: 6px;
-  font-size: 0.72rem;
+  padding: 8px 6px;
+  border-radius: 8px;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tg-k-btn:hover {
+  background: #27303d;
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .tg-k-btn.active {
   background: var(--accent-crimson);
   border-color: var(--accent-crimson);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
 }
 
-.tg-bubble-reply {
-  background: #141418;
-  border-left: 3px solid var(--accent-crimson);
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: var(--text-silver);
+/* TELEGRAM INPUT BAR */
+.tg-input-bar {
+  background: #11141a;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tg-input-clip {
+  color: var(--text-zinc);
+  cursor: pointer;
+}
+
+.tg-input-placeholder {
+  flex: 1;
+  font-size: 0.78rem;
+  color: var(--text-zinc);
+  text-align: left;
+}
+
+.tg-input-send {
+  color: var(--accent-crimson);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.phone-home-indicator {
+  width: 90px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  margin: 6px auto 6px;
 }
 
 .p-card-footer {
@@ -1553,5 +1942,16 @@ body {
     flex-direction: column;
     gap: 10px;
     text-align: center;
+  }
+  .laptop-base-chassis {
+    width: 100%;
+    margin-left: 0;
+    border-radius: 0 0 10px 10px;
+  }
+  .laptop-lid {
+    padding: 8px 8px 0;
+  }
+  .phone-device {
+    max-width: 100%;
   }
 }
