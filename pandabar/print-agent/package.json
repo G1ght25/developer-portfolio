@@ -1,0 +1,13 @@
+{
+  "name": "pandabar-print-agent",
+  "version": "1.0.0",
+  "description": "Автономный агент печати накладных PandaBar (замена 1С)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["print", "pos", "kitchen", "receipt", "1c"],
+  "author": "PandaBar Tech Team",
+  "license": "ISC"
+}

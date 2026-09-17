@@ -1,0 +1,13 @@
+@echo off
+chcp 65001 > nul
+title PandaBar Kitchen Print Agent
+echo ========================================================
+echo   🐼 PandaBar - Агент автоматической печати заказов
+echo ========================================================
+echo.
+echo Подключение к серверу: http://185.251.88.240:3000
+echo.
+
+node index.js --server=http://185.251.88.240:3000 --token=pandabar_print_secret_2026
+
+pause

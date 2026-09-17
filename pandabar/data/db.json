@@ -1,0 +1,272 @@
+{
+  "users": [
+    {
+      "id": "user-demo",
+      "name": "Никита",
+      "phone": "+7 (999) 111-22-33",
+      "email": "mokrijnikita@gmail.com",
+      "address": {
+        "street": "ул. Ленина",
+        "house": "42",
+        "apartment": "105",
+        "entrance": "2",
+        "floor": "5",
+        "intercom": "105к"
+      },
+      "createdAt": 1783341803587
+    },
+    {
+      "id": "user-mrj87azx-c0hwy28",
+      "name": "Никита",
+      "phone": "+7 (993) 744-45-90",
+      "createdAt": 1783947368301,
+      "address": {
+        "street": "черничная",
+        "house": "37",
+        "apartment": "",
+        "entrance": "",
+        "floor": "",
+        "intercom": ""
+      }
+    }
+  ],
+  "orders": [
+    {
+      "id": "order-mrjak0xf-23w32",
+      "userId": "user-mrj87azx-c0hwy28",
+      "userName": "Никита",
+      "userPhone": "+7 (993) 744-45-90",
+      "type": "delivery",
+      "address": {
+        "street": "черничная",
+        "house": "37",
+        "apartment": "",
+        "entrance": "",
+        "floor": "",
+        "intercom": ""
+      },
+      "paymentMethod": "cash",
+      "items": [
+        {
+          "product": {
+            "id": "set-tempura-hot",
+            "name": "Сет Горячая Темпура",
+            "description": "Набор из трех согревающих зажаристых темпура роллов: Темпура сяке (лосось), Темпура унаги (угорь), Темпура тори (курица). С хрустящей корочкой панко.",
+            "price": 1190,
+            "oldPrice": 1450,
+            "weight": 780,
+            "pieces": 24,
+            "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80",
+            "category": "sets",
+            "tags": [
+              "Острое",
+              "Темпура"
+            ]
+          },
+          "quantity": 6
+        }
+      ],
+      "total": 7140,
+      "deliveryFee": 0,
+      "discount": 0,
+      "status": "completed",
+      "statusTimeline": [
+        {
+          "status": "pending",
+          "title": "Заказ оформлен",
+          "description": "Заказ принят и ожидает подтверждения оператором",
+          "timestamp": 1783951321011
+        },
+        {
+          "status": "cooking",
+          "title": "Готовится",
+          "description": "Шеф-повар уже крутит ваши роллы из свежайшей рыбы!",
+          "timestamp": 1783951331707
+        },
+        {
+          "status": "delivering",
+          "title": "Передан курьеру",
+          "description": "Курьер забрал горячий заказ и спешит по вашему адресу!",
+          "timestamp": 1783951333436
+        },
+        {
+          "status": "completed",
+          "title": "Доставлен",
+          "description": "Заказ успешно доставлен. Спасибо, что вы с PandaBar! Напишите отзыв!",
+          "timestamp": 1783951343299
+        }
+      ],
+      "createdAt": 1783951321011,
+      "estimatedTime": "Доставлен",
+      "notes": "писька"
+    },
+    {
+      "id": "order-mrj88ekz-1diz1",
+      "userId": "user-mrj87azx-c0hwy28",
+      "userName": "Никита",
+      "userPhone": "+7 (993) 744-45-90",
+      "type": "delivery",
+      "address": {
+        "street": "черничная",
+        "house": "37",
+        "apartment": "",
+        "entrance": "",
+        "floor": "",
+        "intercom": ""
+      },
+      "paymentMethod": "cash",
+      "items": [
+        {
+          "product": {
+            "id": "set-tempura-hot",
+            "name": "Сет Горячая Темпура",
+            "description": "Набор из трех согревающих зажаристых темпура роллов: Темпура сяке (лосось), Темпура унаги (угорь), Темпура тори (курица). С хрустящей корочкой панко.",
+            "price": 1190,
+            "oldPrice": 1450,
+            "weight": 780,
+            "pieces": 24,
+            "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80",
+            "category": "sets",
+            "tags": [
+              "Острое",
+              "Темпура"
+            ]
+          },
+          "quantity": 5
+        }
+      ],
+      "total": 5950,
+      "deliveryFee": 0,
+      "discount": 0,
+      "status": "completed",
+      "statusTimeline": [
+        {
+          "status": "pending",
+          "title": "Заказ оформлен",
+          "description": "Заказ принят и ожидает подтверждения оператором",
+          "timestamp": 1783947419603
+        },
+        {
+          "status": "confirmed",
+          "title": "Подтвержден",
+          "description": "Оператор подтвердил ваш заказ! Скоро начнем готовить.",
+          "timestamp": 1783951021236
+        },
+        {
+          "status": "cooking",
+          "title": "Готовится",
+          "description": "Шеф-повар уже крутит ваши роллы из свежайшей рыбы!",
+          "timestamp": 1783951229558
+        },
+        {
+          "status": "delivering",
+          "title": "Передан курьеру",
+          "description": "Курьер забрал горячий заказ и спешит по вашему адресу!",
+          "timestamp": 1783951230879
+        },
+        {
+          "status": "completed",
+          "title": "Доставлен",
+          "description": "Заказ успешно доставлен. Спасибо, что вы с PandaBar! Напишите отзыв!",
+          "timestamp": 1783951232287
+        }
+      ],
+      "createdAt": 1783947419603,
+      "estimatedTime": "Доставлен",
+      "notes": "пиписька"
+    },
+    {
+      "id": "order-101",
+      "userId": "user-demo",
+      "userName": "Никита",
+      "userPhone": "+7 (999) 111-22-33",
+      "type": "delivery",
+      "address": {
+        "street": "ул. Ленина",
+        "house": "42",
+        "apartment": "105",
+        "entrance": "2",
+        "floor": "5",
+        "intercom": "105к"
+      },
+      "paymentMethod": "card_courier",
+      "items": [
+        {
+          "product": {
+            "id": "set-panda-king",
+            "name": "Сет Мега Панда",
+            "description": "Огромный сытный сет для большой компании: Филадельфия классик, Калифорния шеф, Запеченный ролл с курицей, Темпура с лососем, Классический ролл с огурцом.",
+            "price": 1990,
+            "oldPrice": 2490,
+            "weight": 1250,
+            "pieces": 40,
+            "image": "https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=600&auto=format&fit=crop&q=80",
+            "category": "sets",
+            "tags": [
+              "Популярно",
+              "Выгодно"
+            ]
+          },
+          "quantity": 1
+        },
+        {
+          "product": {
+            "id": "roll-baked-salmon",
+            "name": "Запеченный Сяке Ролл",
+            "description": "Нежный лосось, спелый авокадо, сливочный сыр под ароматной шапочкой из спайси-соуса и сыра Моцарелла с каплями соуса Унаги.",
+            "price": 490,
+            "weight": 260,
+            "pieces": 8,
+            "image": "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=600&auto=format&fit=crop&q=80",
+            "category": "baked-rolls",
+            "tags": [
+              "Хит",
+              "Спайси"
+            ],
+            "spicy": true
+          },
+          "quantity": 2
+        }
+      ],
+      "total": 2970,
+      "deliveryFee": 0,
+      "discount": 0,
+      "status": "completed",
+      "statusTimeline": [
+        {
+          "status": "pending",
+          "title": "Заказ принят",
+          "description": "Ожидает подтверждения оператором",
+          "timestamp": 1783939403587
+        },
+        {
+          "status": "confirmed",
+          "title": "Подтвержден",
+          "description": "Оператор подтвердил заказ, шеф-повар начинает готовить!",
+          "timestamp": 1783940123587
+        },
+        {
+          "status": "cooking",
+          "title": "Готовится",
+          "description": "Катаем суши и запекаем роллы из-под ножа!",
+          "timestamp": 1783941203587
+        },
+        {
+          "status": "delivering",
+          "title": "В пути",
+          "description": "Курьер мчится к вам со скоростью ветра!",
+          "timestamp": 1783942643587
+        },
+        {
+          "status": "completed",
+          "title": "Доставлен",
+          "description": "Приятного аппетита! Будем рады вашему отзыву.",
+          "timestamp": 1783944083587
+        }
+      ],
+      "createdAt": 1783939403587,
+      "estimatedTime": "Доставлен",
+      "notes": "Пожалуйста, бесконтактная доставка"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Накладная 1С - Заказ #101</title>
+  <style>
+    body {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 12px;
+      line-height: 1.3;
+      margin: 0;
+      padding: 15px;
+      background: white;
+      color: black;
+      width: 580px;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+    th, td { border: 1px solid black; padding: 4px 6px; }
+    th { background: #f0f0f0; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .bold { font-weight: bold; }
+    .border-box { border: 1px solid black; padding: 4px 8px; }
+    .cut-line {
+      border-top: 2px dashed #999;
+      margin: 20px 0;
+      text-align: center;
+      position: relative;
+    }
+    .cut-line span {
+      background: white;
+      padding: 0 10px;
+      position: relative;
+      top: -9px;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- БЛОК 1: НАКЛАДНАЯ -->
+  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+    <div>
+      <div class="bold">Поставщик: <u>ПАНДА доставка готовых блюд</u></div>
+      <div>Адрес: <u>пр-т. Калинина 116</u></div>
+      <div>Телефон: <u>600-417 8-983-352-69-72 www.pandabar.ru</u></div>
+    </div>
+    <div class="border-box bold">
+      Доставка: 16.08.2026 12:34
+    </div>
+  </div>
+
+  <div class="text-center bold" style="font-size: 14px; margin: 10px 0;">
+    ЗАКАЗ № 101 от 16.08.2026
+  </div>
+
+  <div>
+    <div><span class="bold">Покупатель:</span> <u>Анастасия Волкова</u></div>
+    <div><span class="bold">Телефон:</span> <u>+7 (999) 456-78-90</u></div>
+    <div><span class="bold">Адрес:</span> <u>ул. пр-кт Красноармейский, д. 72, кв. 14</u></div>
+    <div><span class="bold">Примечание:</span> <i>Бесконтактная доставка</i></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30px;">№</th>
+        <th>Товар</th>
+        <th style="width: 70px;">Кол-во</th>
+        <th style="width: 70px;">Цена</th>
+        <th style="width: 80px;">Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td class="text-center">1</td>
+          <td class="bold">"Филадельфия Классик" (шт)</td>
+          <td class="text-center">2</td>
+          <td class="text-right">550.00</td>
+          <td class="text-right bold">1100.00</td>
+        </tr>
+      
+        <tr>
+          <td class="text-center">2</td>
+          <td class="bold">"Пепперони Классик" (шт)</td>
+          <td class="text-center">1</td>
+          <td class="text-right">690.00</td>
+          <td class="text-right bold">690.00</td>
+        </tr>
+      
+      <tr class="bold">
+        <td colspan="4" class="text-right">Итого по заказу:</td>
+        <td class="text-right">1790.00</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 15px; text-align: right;">
+    Покупатель: ________________________ (подпись)
+  </div>
+
+  <div class="cut-line"><span>✂ линия отреза для кухни</span></div>
+
+  <!-- БЛОК 3: ЗАЯВКА ДЛЯ ЦЕХА -->
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="bold" style="font-size: 13px;">ЦЕХ / КУХНЯ</div>
+    <div class="border-box bold" style="border: 2px solid black;">
+      Готовность: 16.08.2026 13:09
+    </div>
+  </div>
+
+  <div class="text-center bold" style="font-size: 14px; margin: 10px 0;">
+    ЗАЯВКА ДЛЯ ЦЕХА № 101 от 16.08.2026
+  </div>
+
+  <div style="border: 1px solid black; padding: 6px; background: #fffbe6; margin-bottom: 8px;"><strong>⚠️ Комментарий кухни:</strong> Бесконтактная доставка</div>
+
+  <table style="border: 2px solid black;">
+    <thead>
+      <tr style="border-bottom: 2px solid black; background: #ddd;">
+        <th style="width: 40px;">№</th>
+        <th>Товар (Наименование блюда)</th>
+        <th style="width: 100px;">Количество</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td class="text-center bold">1</td>
+          <td class="bold" style="font-size: 14px;">"Филадельфия Классик"</td>
+          <td class="text-center bold" style="font-size: 16px;">2 шт.</td>
+        </tr>
+      
+        <tr>
+          <td class="text-center bold">2</td>
+          <td class="bold" style="font-size: 14px;">"Пепперони Классик"</td>
+          <td class="text-center bold" style="font-size: 16px;">1 шт.</td>
+        </tr>
+      
+    </tbody>
+  </table>
+</body>
+</html>

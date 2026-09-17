@@ -1,0 +1,6 @@
+{
+  "name": "PandaBar Barnaul",
+  "description": "Панда Бар Барнаул — Премиум доставка свежих суши, роллов, суши сетов и азиатской кухни в Барнауле. Быстрая доставка, интерактивная геймифицированная зона, бонусы и личный кабинет.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
