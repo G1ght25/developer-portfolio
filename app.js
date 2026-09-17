@@ -668,11 +668,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const TARGET_FILES = {
+    wb: 'wildberries_export.xlsx',
+    ozon: 'ozon_export.xlsx',
+    avito: 'avito_export.xlsx',
+    hh: 'hh_ru_export.xlsx'
+  };
+
   const btnExportExcel = document.getElementById('btn-export-excel');
   if (btnExportExcel) {
     btnExportExcel.addEventListener('click', () => {
-      const data = SCRAPER_DATA[activeScraperTarget];
-      showToast(`Отчет «${data.name}_export.xlsx» сформирован и готов к выгрузке!`);
+      const filename = TARGET_FILES[activeScraperTarget] || 'data_export.xlsx';
+      const fileUrl = `./assets/exports/${filename}`;
+
+      // Trigger real browser download of the genuine .xlsx spreadsheet
+      const downloadLink = document.createElement('a');
+      downloadLink.href = fileUrl;
+      downloadLink.setAttribute('download', filename);
+      downloadLink.style.display = 'none';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      setTimeout(() => {
+        document.body.removeChild(downloadLink);
+      }, 150);
+
+      showToast(`Файл «${filename}» скачан! Откройте в Excel.`);
     });
   }
 
