@@ -32,7 +32,18 @@
 
 ---
 
-### 2. Telegram Portfolio & Business Bot
+### 2. OmniParser Core — Высокоскоростной комплекс сбора данных и парсинга
+
+Промышленная система мониторинга и парсинга данных:
+- **Маркетплейсы & e-Commerce:** Wildberries, Ozon, Яндекс Маркет, AliExpress (парсинг цен с учетом персональных скидок и WB Кошелька, мониторинг остатков по складам, сбор карточек и отзывов).
+- **Классифайды и доски объявлений:** Avito, Циан, Auto.ru, hh.ru (сбор свежих объявлений, деобфускация контактов, фильтрация ниже рынка).
+- **Обход антифрод-систем:** обход Cloudflare Turnstile, reCAPTCHA v2/v3, DataDome, подмена браузерных отпечатков (TLS JA3/ClientHello, Canvas, WebGL, AudioContext).
+- **Инфраструктура & Скорость:** асинхронная архитектура (от 1 400 страниц/мин), пулы резидентских и мобильных 4G прокси с автоматической ротацией.
+- **Интеграция данных:** прямой экспорт в Excel (.xlsx), Google Таблицы, PostgreSQL / SQLite и мгновенные алерты в Telegram при снижении цен конкурентов.
+
+---
+
+### 3. Telegram Portfolio & Business Bot
 
 Асинхронный Telegram-бот на aiogram 3.x с 4 готовыми бизнес-сценариями:
 - **E-commerce модуль:** каталог товаров, динамическая корзина, расчет сумм и пошаговый чекаут.
@@ -42,7 +53,7 @@
 
 ---
 
-### 3. Echo Sonar - HTML5 Canvas игра
+### 4. Echo Sonar - HTML5 Canvas игра
 
 ![Echo Sonar Showcase](assets/screenshots/echo_sonar_showcase.png)
 
@@ -57,7 +68,8 @@
 ## Технологический стек
 
 - **Frontend:** TypeScript, React 19, Tailwind CSS, Vite, Motion, HTML5 Canvas, Web Audio API
-- **Backend:** Python 3.12, Node.js, Express, aiogram 3.x, FastAPI, REST API, Server-Sent Events (SSE)
+- **Backend & Bots:** Python 3.12, Node.js, Express, aiogram 3.x, FastAPI, REST API, Server-Sent Events (SSE)
+- **Web Scraping & Парсинг:** Playwright, Selenium, aiohttp, BeautifulSoup4, Scrapy, Cloudflare Turnstile Bypass, реверс-инжиниринг API, ротация прокси (резидентские / мобильные), экспорт в Excel (.xlsx), Google Sheets, PostgreSQL
 - **Базы данных:** PostgreSQL, SQLite (aiosqlite), Redis
 - **Архитектура:** Машина состояний (FSM), Ролевая модель доступа (RBAC), Микросервисы, Docker
 - **Инструменты:** Git, Linux, Bash, Nginx, Postman

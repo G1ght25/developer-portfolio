@@ -456,7 +456,228 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // 7. ECHO SONAR GAME LAUNCHER
+  // 7. OMNIPARSER CORE ENGINE (INTERACTIVE SCRAPER CONSOLE)
+  // ==========================================================================
+  const SCRAPER_DATA = {
+    wb: {
+      name: 'Wildberries',
+      speed: '1 420 стр/мин',
+      bypass: '99.8% Bypass',
+      proxy: '185.220.101.45 (Residential)',
+      count: '142 записи',
+      logs: [
+        { tag: 'info', text: 'Инициализация Playwright AsyncSession (Chromium TLS Fingerprint Chrome 130)' },
+        { tag: 'proxy', text: 'Ротация резидентского IP -> 185.220.101.45:9050 [RU-MOW Residential Pool]' },
+        { tag: 'shield', text: 'Cloudflare Turnstile Challenge обнаружен на wildberries.ru/catalog/...' },
+        { tag: 'bypass', text: 'Cloudflare Turnstile успешно решен за 0.68с. Токен верификации получен.' },
+        { tag: 'data', text: 'Извлечен каталог: 36 карточек (артикулы, цены WB Кошелька, остатки по складам)' },
+        { tag: 'db', text: 'Пакетный Upsert 36 строк в PostgreSQL (0 дубликатов, транзакция зафиксирована)' },
+        { tag: 'file', text: 'Сформирован отчет: wildberries_catalog_export.xlsx (36 строк, 8 колонок)' },
+        { tag: 'success', text: 'Парсинг успешно завершен за 2.1с без блокировок и капчи!' }
+      ],
+      table: `
+        <tr><td class="font-mono">WB-19842011</td><td>Робот-пылесос UltraClean X1</td><td class="font-mono text-crimson">18 490 ₽</td><td class="font-mono">-35%</td><td>Коледино (42 шт)</td><td><span class="badge-green">В наличии</span></td></tr>
+        <tr><td class="font-mono">WB-20491823</td><td>Беспроводные наушники ProSound ANC</td><td class="font-mono text-crimson">4 990 ₽</td><td class="font-mono">-48%</td><td>Электросталь (118 шт)</td><td><span class="badge-green">В наличии</span></td></tr>
+        <tr><td class="font-mono">WB-15093847</td><td>Умные часы AMOLED Titan Sport</td><td class="font-mono text-crimson">7 250 ₽</td><td class="font-mono">-22%</td><td>Казань (19 шт)</td><td><span class="badge-green">В наличии</span></td></tr>
+        <tr><td class="font-mono">WB-38491024</td><td>Механическая клавиатура RGB Hot-Swap</td><td class="font-mono text-crimson">3 890 ₽</td><td class="font-mono">-40%</td><td>Санкт-Петербург (5 шт)</td><td><span class="badge-green">Мало</span></td></tr>
+      `,
+      json: `{\n  "status": "success",\n  "target": "wildberries.ru",\n  "proxy_used": "185.220.101.45:9050 (residential_pool_ru)",\n  "anti_bot_bypass": { "cloudflare_turnstile": true, "solve_time_sec": 0.68 },\n  "items_extracted": 36,\n  "sample_records": [\n    { "sku": "WB-19842011", "title": "Робот-пылесос UltraClean X1", "price": 18490, "stock": 42 }\n  ]\n}`
+    },
+    ozon: {
+      name: 'Ozon',
+      speed: '1 650 стр/мин',
+      bypass: '99.9% Bypass',
+      proxy: '94.130.12.88 (Mobile Pool 4G)',
+      count: '280 записей',
+      logs: [
+        { tag: 'info', text: 'aiohttp Session инициализирована с подменой TLS JA3 / ClientHello' },
+        { tag: 'proxy', text: 'Подключение мобильного прокси Мегафон (ротация каждые 30 сек)' },
+        { tag: 'shield', text: 'Ozon Anti-Bot WAF WSS Socket авторизован' },
+        { tag: 'data', text: 'Спарсено 48 карточек с ценами Ozon Карты и скидками 11.11' },
+        { tag: 'db', text: 'Загрузка 48 записей в PostgreSQL (сравнение с ценами конкурентов)' },
+        { tag: 'file', text: 'Генерация отчета ozon_price_monitor.xlsx (48 записей)' },
+        { tag: 'success', text: 'Поток завершен без rate limit за 1.4с!' }
+      ],
+      table: `
+        <tr><td class="font-mono">OZ-9942015</td><td>Кофемашина DeLonghi Magnifica S</td><td class="font-mono text-crimson">34 990 ₽</td><td class="font-mono">-28%</td><td>Ozon Хоругвино (24 шт)</td><td><span class="badge-green">В наличии</span></td></tr>
+        <tr><td class="font-mono">OZ-8812903</td><td>Монитор 27" IPS 165Hz 2K Gaming</td><td class="font-mono text-crimson">16 790 ₽</td><td class="font-mono">-31%</td><td>Ozon Тверь (50 шт)</td><td><span class="badge-green">В наличии</span></td></tr>
+        <tr><td class="font-mono">OZ-7734120</td><td>Планшет Pad Pro 11 256GB Wi-Fi</td><td class="font-mono text-crimson">42 490 ₽</td><td class="font-mono">-15%</td><td>Ozon Казань (12 шт)</td><td><span class="badge-green">В наличии</span></td></tr>
+      `,
+      json: `{\n  "status": "success",\n  "target": "ozon.ru",\n  "proxy_used": "94.130.12.88 (mobile_megafon_4g)",\n  "anti_bot_bypass": { "ozon_waf_passed": true, "session_time_sec": 1.41 },\n  "items_extracted": 48\n}`
+    },
+    avito: {
+      name: 'Avito',
+      speed: '980 стр/мин',
+      bypass: '99.5% Bypass',
+      proxy: '194.67.210.15 (Residential Static)',
+      count: '84 объявления',
+      logs: [
+        { tag: 'info', text: 'Playwright Stealth + Headless Chromium запущен' },
+        { tag: 'shield', text: 'Эмуляция движений мыши Bézier curves + WebGL Canvas Spoof' },
+        { tag: 'data', text: 'Парсинг свежих объявлений: «Недвижимость / Аренда квартир»' },
+        { tag: 'bypass', text: 'Деобфускация номера телефона: контакт +7 (921) ***-45-12 получен' },
+        { tag: 'db', text: 'Запись 84 объявлений в SQLite базу данных' },
+        { tag: 'success', text: 'Цикл завершен, Telegram-бот отправил 2 алерта по горячим ценам!' }
+      ],
+      table: `
+        <tr><td class="font-mono">AV-4491028</td><td>Студия 32м² в ЖК «Новый Горизонт»</td><td class="font-mono text-crimson">42 000 ₽/мес</td><td class="font-mono">Свежее</td><td>Москва, м. Сокол</td><td><span class="badge-green">Активно</span></td></tr>
+        <tr><td class="font-mono">AV-3918201</td><td>2-комн. квартира 64м² с ремонтом</td><td class="font-mono text-crimson">8 900 000 ₽</td><td class="font-mono">-7%</td><td>СПб, Приморский р-н</td><td><span class="badge-green">Активно</span></td></tr>
+        <tr><td class="font-mono">AV-5501928</td><td>Toyota RAV4 2.5 AT 2021 (1 хоз)</td><td class="font-mono text-crimson">2 950 000 ₽</td><td class="font-mono">Срочно</td><td>Казань, Частное лицо</td><td><span class="badge-green">Активно</span></td></tr>
+      `,
+      json: `{\n  "status": "success",\n  "target": "avito.ru",\n  "proxy_used": "194.67.210.15 (residential_pool)",\n  "category": "real_estate",\n  "contacts_unlocked": 84\n}`
+    },
+    hh: {
+      name: 'hh.ru',
+      speed: '1 800 стр/мин',
+      bypass: '100% Bypass',
+      proxy: '45.142.214.10 (Datacenter High-Speed)',
+      count: '310 резюме',
+      logs: [
+        { tag: 'info', text: 'Асинхронный сбор через HTTP/2 REST API' },
+        { tag: 'data', text: 'Поиск кандидатов по фильтру: «Python Middle / Senior», «aiogram»' },
+        { tag: 'bypass', text: 'Извлечение контактных данных: Telegram, WhatsApp, GitHub' },
+        { tag: 'db', text: 'Импорт 310 валидных анкет в CRM / PostgreSQL' },
+        { tag: 'file', text: 'Экспорт файла candidates_pool.xlsx' },
+        { tag: 'success', text: '310 резюме сохранено за 3.2с без блокировок!' }
+      ],
+      table: `
+        <tr><td class="font-mono">HH-1029481</td><td>Senior Python Backend Developer</td><td class="font-mono text-crimson">280 000 ₽</td><td class="font-mono">6 лет</td><td>Москва (Удаленно)</td><td><span class="badge-green">Открыт</span></td></tr>
+        <tr><td class="font-mono">HH-2910384</td><td>Full-Stack React + Node.js Engineer</td><td class="font-mono text-crimson">190 000 ₽</td><td class="font-mono">4 года</td><td>СПб (Гибрид)</td><td><span class="badge-green">Открыт</span></td></tr>
+        <tr><td class="font-mono">HH-3910285</td><td>DevOps / Cloud SRE Engineer</td><td class="font-mono text-crimson">320 000 ₽</td><td class="font-mono">7 лет</td><td>Удаленно (РФ)</td><td><span class="badge-green">Открыт</span></td></tr>
+      `,
+      json: `{\n  "status": "success",\n  "target": "hh.ru",\n  "category": "it_resumes",\n  "items_extracted": 310\n}`
+    }
+  };
+
+  let activeScraperTarget = 'wb';
+
+  const updateScraperTargetUI = (targetId) => {
+    const data = SCRAPER_DATA[targetId];
+    if (!data) return;
+
+    activeScraperTarget = targetId;
+
+    document.querySelectorAll('.scraper-tab-btn').forEach(btn => {
+      if (btn.getAttribute('data-target') === targetId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    const smSpeed = document.getElementById('sm-speed');
+    const smBypass = document.getElementById('sm-bypass');
+    const smProxy = document.getElementById('sm-proxy');
+    const smCount = document.getElementById('sm-count');
+
+    if (smSpeed) smSpeed.textContent = data.speed;
+    if (smBypass) smBypass.textContent = data.bypass;
+    if (smProxy) smProxy.textContent = data.proxy;
+    if (smCount) smCount.textContent = data.count;
+
+    const logBox = document.getElementById('scraper-terminal-logs');
+    if (logBox) {
+      let logsHtml = '';
+      const now = new Date();
+      const timePrefix = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      data.logs.forEach((item, idx) => {
+        const sec = String(10 + idx * 2).padStart(2, '0');
+        const isSuccess = item.tag === 'success';
+        logsHtml += `<div class="log-line ${isSuccess ? 'log-success' : ''}">
+          <span class="log-ts">[${timePrefix}:${sec}]</span>
+          <span class="log-tag ${item.tag}">${item.tag.toUpperCase()}</span>
+          ${item.text}
+        </div>`;
+      });
+      logBox.innerHTML = logsHtml;
+    }
+
+    const tableBody = document.getElementById('scraper-table-body');
+    if (tableBody) tableBody.innerHTML = data.table;
+
+    const jsonContent = document.getElementById('scraper-json-content');
+    if (jsonContent) jsonContent.textContent = data.json;
+  };
+
+  document.querySelectorAll('.scraper-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      if (targetId) updateScraperTargetUI(targetId);
+    });
+  });
+
+  document.querySelectorAll('.s-subview-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.s-subview-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const viewId = btn.getAttribute('data-view');
+      document.querySelectorAll('.scraper-view').forEach(v => v.classList.remove('active'));
+      const activeV = document.getElementById(`view-scraper-${viewId}`);
+      if (activeV) activeV.classList.add('active');
+    });
+  });
+
+  const btnRunScraper = document.getElementById('btn-run-scraper');
+  const scraperStatusText = document.getElementById('scraper-status-text');
+
+  if (btnRunScraper) {
+    btnRunScraper.addEventListener('click', () => {
+      btnRunScraper.disabled = true;
+      btnRunScraper.innerHTML = '<span>⚡ Идет сбор данных...</span>';
+      if (scraperStatusText) scraperStatusText.textContent = 'СТАТУС: ПОТОК АКТИВЕН';
+
+      const cliTabBtn = document.querySelector('.s-subview-btn[data-view="cli"]');
+      if (cliTabBtn) cliTabBtn.click();
+
+      const logBox = document.getElementById('scraper-terminal-logs');
+      if (logBox) {
+        logBox.innerHTML = '<div class="log-line"><span class="log-tag info">START</span> Запуск асинхронного сбора данных...</div>';
+      }
+
+      const data = SCRAPER_DATA[activeScraperTarget];
+      let step = 0;
+
+      const streamInterval = setInterval(() => {
+        if (!data || step >= data.logs.length) {
+          clearInterval(streamInterval);
+          btnRunScraper.disabled = false;
+          btnRunScraper.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Запустить сбор данных</span>`;
+          if (scraperStatusText) scraperStatusText.textContent = 'СТАТУС: ГОТОВ К ЗАПУСКУ';
+          showToast(`Парсинг «${data.name}» успешно выполнен! Собрано ${data.count} без блокировок.`);
+          return;
+        }
+
+        const item = data.logs[step];
+        const now = new Date();
+        const timePrefix = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        const sec = String(now.getSeconds()).padStart(2, '0');
+        const isSuccess = item.tag === 'success';
+
+        const newLine = document.createElement('div');
+        newLine.className = `log-line ${isSuccess ? 'log-success' : ''}`;
+        newLine.innerHTML = `<span class="log-ts">[${timePrefix}:${sec}]</span> <span class="log-tag ${item.tag}">${item.tag.toUpperCase()}</span> ${item.text}`;
+
+        if (logBox) {
+          logBox.appendChild(newLine);
+          logBox.scrollTop = logBox.scrollHeight;
+        }
+        step++;
+      }, 350);
+    });
+  }
+
+  const btnExportExcel = document.getElementById('btn-export-excel');
+  if (btnExportExcel) {
+    btnExportExcel.addEventListener('click', () => {
+      const data = SCRAPER_DATA[activeScraperTarget];
+      showToast(`Отчет «${data.name}_export.xlsx» сформирован и готов к выгрузке!`);
+    });
+  }
+
+  // ==========================================================================
+  // 8. ECHO SONAR GAME LAUNCHER
   // ==========================================================================
   const btnStartSonar = document.getElementById('btn-start-sonar');
   const sonarOverlay = document.getElementById('sonar-launch-overlay');
